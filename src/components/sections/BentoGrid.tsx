@@ -55,8 +55,8 @@ const BentoGrid = () => {
                 <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-brand-cyan-500/15 text-brand-cyan-500 border border-brand-cyan-500/30 mb-5 w-fit">
                   {w.week}
                 </span>
-                <p className="text-white/50 italic text-sm mb-4 leading-relaxed">{w.pain}</p>
-                <p className="text-white/80 leading-relaxed text-[0.95rem]">{w.solution}</p>
+                <p className="text-white/50 italic text-sm mb-4 leading-relaxed font-light">{w.pain}</p>
+                <p className="text-white/80 leading-relaxed text-[0.95rem] font-light">{w.solution}</p>
               </div>
             </AnimatedItem>
           ))}
@@ -69,15 +69,15 @@ const BentoGrid = () => {
               O que você tem ao final do mês
             </h3>
             <ul className="space-y-3 mb-8">
-              <li className="flex items-start gap-3 text-brand-navy-900/80">
+              <li className="flex items-start gap-3 text-brand-navy-900/80 font-light">
                 <span className="w-2 h-2 rounded-full bg-brand-cyan-500 mt-2 flex-shrink-0" />
                 Um caso real de melhoria com números prontos para apresentar.
               </li>
-              <li className="flex items-start gap-3 text-brand-navy-900/80">
+              <li className="flex items-start gap-3 text-brand-navy-900/80 font-light">
                 <span className="w-2 h-2 rounded-full bg-brand-cyan-500 mt-2 flex-shrink-0" />
                 Um argumento concreto para a próxima conversa de promoção.
               </li>
-              <li className="flex items-start gap-3 text-brand-navy-900/80">
+              <li className="flex items-start gap-3 text-brand-navy-900/80 font-light">
                 <span className="w-2 h-2 rounded-full bg-brand-cyan-500 mt-2 flex-shrink-0" />
                 O início de um método que os profissionais que crescem mais rápido usam sem que ninguém perceba que é um sistema.
               </li>

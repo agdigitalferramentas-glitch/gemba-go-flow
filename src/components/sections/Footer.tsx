@@ -13,7 +13,7 @@ const Footer = () => {
             <h3 className="text-2xl font-extrabold text-white mb-2">
               Gemba<span className="text-brand-cyan-500">Group</span>
             </h3>
-            <p className="text-white/50 text-sm max-w-sm">
+            <p className="text-white/50 text-sm max-w-sm font-light">
               Capacitando profissionais para transformar empresas desde 2008.
             </p>
           </div>
