@@ -2,6 +2,7 @@ import { AnimatedSection } from "@/components/AnimatedSection";
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
 import { useState } from "react";
+import heroBg from "@/assets/bg-1-gemba-desktop.webp";
 
 const HeroSection = () => {
   const [nome, setNome] = useState("");
@@ -10,10 +11,16 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-navy-900">
-      <div className="absolute inset-0 bg-gradient-to-br from-brand-navy-900 via-brand-navy-800 to-brand-navy-700" />
-      <div className="absolute inset-0 opacity-20" style={{
-        backgroundImage: "radial-gradient(circle at 20% 50%, hsl(190 100% 54% / 0.15), transparent 50%), radial-gradient(circle at 80% 20%, hsl(190 100% 54% / 0.1), transparent 40%)"
-      }} />
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: `url(${heroBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "top center",
+          backgroundRepeat: "no-repeat",
+        }}
+      />
+      <div className="absolute inset-0 bg-brand-navy-900/60" />
 
       <div className="container relative z-10 px-4 py-20">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
