@@ -1,10 +1,6 @@
 import HeroSection from "@/components/sections/HeroSection";
 import BentoGrid from "@/components/sections/BentoGrid";
-import FeaturesGrid from "@/components/sections/FeaturesGrid";
-import ShowcaseSection from "@/components/sections/ShowcaseSection";
-import TestimonialsSection from "@/components/sections/TestimonialsSection";
-import PricingSection from "@/components/sections/PricingSection";
-import FAQSection from "@/components/sections/FAQSection";
+import GembaSection from "@/components/sections/GembaSection";
 import Footer from "@/components/sections/Footer";
 
 const Index = () => {
@@ -12,11 +8,7 @@ const Index = () => {
     <div className="min-h-screen">
       <HeroSection />
       <BentoGrid />
-      <FeaturesGrid />
-      <ShowcaseSection />
-      <TestimonialsSection />
-      <PricingSection />
-      <FAQSection />
+      <GembaSection />
       <Footer />
     </div>
   );
