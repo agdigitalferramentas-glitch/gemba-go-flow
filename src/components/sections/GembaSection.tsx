@@ -25,17 +25,17 @@ const GembaSection = () => {
 
         <AnimatedSection delay={0.15}>
           <div className="max-w-3xl space-y-6">
-            <p className="text-white/70 text-lg leading-relaxed">
+            <p className="text-white/70 text-lg leading-relaxed font-light">
               O Gemba Group foi fundado em 2008 por Vânia Batista e Marcelo Rodrigues com um propósito que não mudou desde o primeiro dia: capacitar profissionais para transformar empresas.
             </p>
-            <p className="text-white/70 text-lg leading-relaxed">
+            <p className="text-white/70 text-lg leading-relaxed font-light">
               Em 2009, criaram o primeiro Programa de Formação Profissional Lean da história. Em 2023, chegaram à 100ª edição com a mesma estrutura, o mesmo rigor e resultados que continuam aparecendo nas empresas onde os alunos trabalham.
             </p>
-            <p className="text-white/70 text-lg leading-relaxed">
+            <p className="text-white/70 text-lg leading-relaxed font-light">
               Hoje o Gemba Group é referência nacional em melhoria contínua e excelência operacional. Os projetos de certificação dos alunos já ultrapassaram{" "}
               <span className="text-brand-cyan-500 font-bold">R$ 1 bilhão em ganhos comprovados</span> para os clientes.
             </p>
-            <p className="text-white/70 text-lg leading-relaxed">
+            <p className="text-white/70 text-lg leading-relaxed font-light">
               Não ensinamos teoria. Ensinamos o que funciona dentro de empresas de verdade, com gente de verdade, gerando resultado que aparece nos relatórios de quem contratou.
             </p>
             <p className="text-white/90 text-lg font-semibold">
