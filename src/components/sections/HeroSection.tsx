@@ -46,10 +46,10 @@ const HeroSection = () => {
             </AnimatedSection>
 
             <AnimatedSection delay={0.2}>
-              <p className="text-base md:text-lg text-white/60 leading-relaxed mb-4">
+              <p className="text-base md:text-lg text-white/90 font-light leading-relaxed mb-4">
                 Este guia ensina isso, passo a passo, em 30 dias.
               </p>
-              <p className="text-base text-white/50 leading-relaxed">
+              <p className="text-base text-white/80 font-light leading-relaxed">
                 Você vai identificar um problema real no seu trabalho, estruturar uma solução com números, executar a melhoria e documentar o resultado de uma forma que nenhum gestor consegue ignorar.
               </p>
             </AnimatedSection>
