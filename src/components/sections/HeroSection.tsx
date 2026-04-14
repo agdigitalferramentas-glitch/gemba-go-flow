@@ -20,7 +20,7 @@ const HeroSection = () => {
           backgroundRepeat: "no-repeat",
         }}
       />
-      <div className="absolute inset-0 bg-brand-navy-900/60" />
+      
 
       <div className="container relative z-10 px-4 py-20">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
