@@ -68,7 +68,7 @@ const HeroSection = () => {
                 }}
               >
                 <div>
-                  <label className="text-white/60 text-sm font-medium mb-1.5 block">Nome</label>
+                  
                   <input
                     type="text"
                     value={nome}
@@ -78,7 +78,7 @@ const HeroSection = () => {
                   />
                 </div>
                 <div>
-                  <label className="text-white/60 text-sm font-medium mb-1.5 block">E-mail</label>
+                  
                   <input
                     type="email"
                     value={email}
@@ -88,7 +88,7 @@ const HeroSection = () => {
                   />
                 </div>
                 <div>
-                  <label className="text-white/60 text-sm font-medium mb-1.5 block">Telefone</label>
+                  
                   <input
                     type="tel"
                     value={telefone}
