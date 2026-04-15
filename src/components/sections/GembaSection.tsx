@@ -48,10 +48,10 @@ const GembaSection = () => {
             <div className="mt-10">
               <Button
                 size="lg"
-                className="bg-brand-green hover:bg-brand-green/90 text-brand-navy-900 font-extrabold rounded-full px-8 py-6 text-base gap-3 shadow-lg shadow-brand-green/25 hover:scale-[1.02] transition-all duration-300"
+                className="bg-brand-green hover:bg-brand-green/90 text-brand-navy-900 font-extrabold rounded-full px-6 sm:px-8 py-6 text-sm sm:text-base gap-2 sm:gap-3 shadow-lg shadow-brand-green/25 hover:scale-[1.02] transition-all duration-300 w-full sm:w-auto"
               >
                 QUERO O GUIA GRATUITO AGORA
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-5 h-5 flex-shrink-0" />
               </Button>
             </div>
           </AnimatedSection>
