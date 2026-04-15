@@ -1,6 +1,6 @@
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { Button } from "@/components/ui/button";
-import { ArrowDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import heroBg from "@/assets/bg-1-gemba-desktop.webp";
 import heroBgMobile from "@/assets/bg-1-gemba-mobile.webp";
@@ -109,11 +109,11 @@ const HeroSection = () => {
                   <Button
                     type="submit"
                     size="lg"
-                    className="group w-full bg-brand-green text-brand-navy-900 font-extrabold rounded-full px-5 py-4 sm:py-5 text-sm sm:text-base shadow-[0_8px_20px_-8px_rgba(0,208,84,0.45)] hover:shadow-[0_16px_32px_-8px_rgba(0,208,84,0.6)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 ease-out mt-2 leading-snug focus:outline-none focus:ring-[3px] focus:ring-brand-cyan-500/35"
+                    className="group w-full bg-brand-green text-brand-navy-900 font-extrabold rounded-full px-3 py-3 sm:px-4 sm:py-4 text-sm sm:text-base shadow-[0_8px_20px_-8px_rgba(0,208,84,0.45)] hover:shadow-[0_16px_32px_-8px_rgba(0,208,84,0.6)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 ease-out mt-2 leading-snug focus:outline-none focus:ring-[3px] focus:ring-brand-cyan-500/35 h-auto min-h-[60px] sm:min-h-[64px]"
                   >
                     <span className="flex-1">QUERO BAIXAR O&nbsp;GUIA&nbsp;GRATUITO</span>
-                    <span className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-brand-navy-900 inline-flex items-center justify-center shadow-[0_2px_8px_rgba(0,0,0,0.15)] flex-shrink-0 group-hover:bg-brand-navy-900 group-hover:text-white group-hover:rotate-[360deg] transition-all duration-500 ease-out">
-                      <ArrowDown className="w-5 h-5 group-hover:translate-y-0.5 transition-transform duration-300" />
+                    <span className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white text-brand-navy-900 inline-flex items-center justify-center shadow-[0_2px_8px_rgba(0,0,0,0.15)] flex-shrink-0 group-hover:bg-brand-navy-900 group-hover:text-white group-hover:rotate-[360deg] transition-all duration-500 ease-out">
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform duration-300" />
                     </span>
                   </Button>
                 </form>
