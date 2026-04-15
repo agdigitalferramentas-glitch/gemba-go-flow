@@ -10,7 +10,7 @@ const HeroSection = () => {
   const [telefone, setTelefone] = useState("");
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-navy-900 max-w-full">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-navy-900">
       <div
         className="absolute inset-0"
         style={{
@@ -20,12 +20,11 @@ const HeroSection = () => {
           backgroundRepeat: "no-repeat",
         }}
       />
-      
 
-      <div className="container relative z-10 px-6 py-20">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 py-20">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Left — Copy */}
-          <div className="min-w-0 max-w-full overflow-hidden break-words">
+          <div className="min-w-0">
             <AnimatedSection>
               <span className="inline-block px-4 py-1.5 rounded-full text-sm font-semibold mb-6 bg-brand-cyan-500/15 text-brand-cyan-500 border border-brand-cyan-500/30">
                 Programa de Formação Profissional Lean
@@ -33,21 +32,21 @@ const HeroSection = () => {
             </AnimatedSection>
 
             <AnimatedSection delay={0.1}>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-extrabold text-white leading-[1.1] tracking-tight mb-6 text-balance">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-extrabold text-white leading-[1.1] tracking-tight mb-6">
                 Você entregou o projeto no prazo.{" "}
                 <span className="text-brand-cyan-500">Seu colega foi promovido.</span>
               </h1>
             </AnimatedSection>
 
             <AnimatedSection delay={0.15}>
-              <h2 className="text-base sm:text-lg md:text-xl text-white font-semibold mb-4 leading-relaxed text-balance">
+              <h2 className="text-base sm:text-lg md:text-xl text-white font-semibold mb-4 leading-relaxed">
                 Gestores não promovem quem trabalha mais. Eles promovem quem consegue mostrar, com dados, o impacto do próprio trabalho.
               </h2>
             </AnimatedSection>
 
             <AnimatedSection delay={0.2}>
               <p className="text-sm sm:text-base md:text-lg text-white/90 font-light leading-relaxed mb-4">
-                Este guia ensina isso, passo a passo, em 30 dias.
+                Este guia ensina isso, passo a passo, em&nbsp;30&nbsp;dias.
               </p>
               <p className="text-sm sm:text-base text-white/80 font-light leading-relaxed">
                 Você vai identificar um problema real no seu trabalho, estruturar uma solução com números, executar a melhoria e documentar o resultado de uma forma que nenhum gestor consegue ignorar.
@@ -56,58 +55,57 @@ const HeroSection = () => {
           </div>
 
           {/* Right — Capture Form */}
-          <AnimatedSection delay={0.3}>
-            <div className="rounded-2xl p-8 md:p-10 border border-white/10 bg-white/5 backdrop-blur-md shadow-2xl">
-              <h3 className="text-xl font-bold text-white mb-6 text-center">
-                Baixe o guia gratuito
-              </h3>
-              <form
-                className="space-y-4"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                }}
-              >
-                <div>
-                  
-                  <input
-                    type="text"
-                    value={nome}
-                    onChange={(e) => setNome(e.target.value)}
-                    placeholder="Seu nome completo"
-                    className="w-full rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan-500/50 transition-all"
-                  />
-                </div>
-                <div>
-                  
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="seu@email.com"
-                    className="w-full rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan-500/50 transition-all"
-                  />
-                </div>
-                <div>
-                  
-                  <input
-                    type="tel"
-                    value={telefone}
-                    onChange={(e) => setTelefone(e.target.value)}
-                    placeholder="(00) 00000-0000"
-                    className="w-full rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan-500/50 transition-all"
-                  />
-                </div>
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="w-full bg-brand-green hover:bg-brand-green/90 text-brand-navy-900 font-extrabold rounded-full py-6 text-base shadow-lg shadow-brand-green/25 hover:scale-[1.02] transition-all duration-300 mt-2"
+          <div className="min-w-0">
+            <AnimatedSection delay={0.3}>
+              <div className="rounded-2xl p-6 sm:p-8 md:p-10 border border-white/10 bg-white/5 backdrop-blur-md shadow-2xl">
+                <h3 className="text-xl font-bold text-white mb-6 text-center">
+                  Baixe o guia gratuito
+                </h3>
+                <form
+                  className="space-y-4"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                  }}
                 >
-                  QUERO BAIXAR O GUIA GRATUITO
-                  <ArrowDown className="w-5 h-5 ml-2" />
-                </Button>
-              </form>
-            </div>
-          </AnimatedSection>
+                  <div>
+                    <input
+                      type="text"
+                      value={nome}
+                      onChange={(e) => setNome(e.target.value)}
+                      placeholder="Seu nome completo"
+                      className="w-full rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan-500/50 transition-all"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="seu@email.com"
+                      className="w-full rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan-500/50 transition-all"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="tel"
+                      value={telefone}
+                      onChange={(e) => setTelefone(e.target.value)}
+                      placeholder="(00) 00000-0000"
+                      className="w-full rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan-500/50 transition-all"
+                    />
+                  </div>
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="w-full bg-brand-green hover:bg-brand-green/90 text-brand-navy-900 font-extrabold rounded-full py-6 text-sm sm:text-base shadow-lg shadow-brand-green/25 hover:scale-[1.02] transition-all duration-300 mt-2"
+                  >
+                    QUERO BAIXAR O GUIA GRATUITO
+                    <ArrowDown className="w-5 h-5 ml-2 flex-shrink-0" />
+                  </Button>
+                </form>
+              </div>
+            </AnimatedSection>
+          </div>
         </div>
       </div>
     </section>
