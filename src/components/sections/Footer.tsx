@@ -8,18 +8,18 @@ const Footer = () => {
       }} />
 
       <div className="container relative z-10 px-6 py-12 md:py-16">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-10">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-10">
           <div>
             <img src={logoGemba} alt="Gemba Group" className="h-[60px] w-auto brightness-0 invert" />
-            <p className="text-white/50 text-sm max-w-sm font-light">
-              Capacitando profissionais para transformar empresas desde 2008.
+            <p className="text-white/50 text-sm max-w-sm font-light text-balance">
+              Capacitando profissionais para transformar empresas desde&nbsp;2008.
             </p>
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-white/40 text-sm">
-            © {new Date().getFullYear()} Gemba Group. Todos os direitos reservados.
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <p className="text-white/40 text-sm text-balance">
+            © {new Date().getFullYear()} Gemba Group. Todos os direitos&nbsp;reservados.
           </p>
           <p className="text-white/40 text-sm">
             Desenvolvido por{" "}
