@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
 import { useState } from "react";
 import heroBg from "@/assets/bg-1-gemba-desktop.webp";
+import heroBgMobile from "@/assets/bg-1-gemba-mobile.webp";
 
 const HeroSection = () => {
   const [nome, setNome] = useState("");
@@ -11,10 +12,21 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-navy-900">
+      {/* Desktop bg */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 hidden sm:block"
         style={{
           backgroundImage: `url(${heroBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "top center",
+          backgroundRepeat: "no-repeat",
+        }}
+      />
+      {/* Mobile bg */}
+      <div
+        className="absolute inset-0 block sm:hidden"
+        style={{
+          backgroundImage: `url(${heroBgMobile})`,
           backgroundSize: "cover",
           backgroundPosition: "top center",
           backgroundRepeat: "no-repeat",
