@@ -6,22 +6,22 @@ const weeks = [
   {
     week: "Semana 1",
     pain: "\"Terminei a semana sem conseguir apontar, com precisão, o que fiz e por que importou.\"",
-    solution: "Na semana 1, você mapeia tudo que executa e separa o que gera visibilidade real do que passa despercebido. Ao final de sete dias você sabe exatamente qual problema vale resolver — e qual é o custo real de deixar ele parado.",
+    solution: "Na semana 1, você mapeia tudo que executa e separa o que gera visibilidade real do que passa despercebido. Ao final de sete dias você sabe exatamente qual problema vale resolver, e qual é o custo real de deixar ele parado.",
   },
   {
     week: "Semana 2",
     pain: "\"Já tive a ideia. Falei na reunião. Ninguém levou a sério.\"",
-    solution: "Na semana 2, você estrutura a proposta com dados: problema descrito em fatos, solução definida, ganho estimado. Uma proposta apresentável antes mesmo de executar — porque a diferença entre quem cresce e quem fica não é a ideia, é como ela é comunicada.",
+    solution: "Na semana 2, você estrutura a proposta com dados: problema descrito em fatos, solução definida, ganho estimado. Uma proposta apresentável antes mesmo de executar, porque a diferença entre quem cresce e quem fica não é a ideia, é como ela é comunicada.",
   },
   {
     week: "Semana 3",
     pain: "\"Fiz a melhoria. Não registrei. Meses depois, não tinha número nenhum para mostrar.\"",
-    solution: "Na semana 3, você executa e documenta. Antes e depois em números concretos. Uma página com problema, ação tomada e resultado — que qualquer gestor lê em dois minutos e não consegue ignorar na próxima reunião de performance.",
+    solution: "Na semana 3, você executa e documenta. Antes e depois em números concretos. Uma página com problema, ação tomada e resultado, que qualquer gestor lê em dois minutos e não consegue ignorar na próxima reunião de performance.",
   },
   {
     week: "Semana 4",
     pain: "\"Meu gestor não sabe o que eu fiz porque fiquei esperando o momento certo para contar. O momento certo nunca chegou.\"",
-    solution: "Na semana 4, você apresenta o resultado de forma direta. Sem reunião formal, sem timing perfeito. Com um caso real documentado, você não precisa esperar ser reconhecido — você mostra o argumento.",
+    solution: "Na semana 4, você apresenta o resultado de forma direta. Sem reunião formal, sem timing perfeito. Com um caso real documentado, você não precisa esperar ser reconhecido, você mostra o argumento.",
   },
 ];
 
@@ -55,8 +55,8 @@ const BentoGrid = () => {
                 <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-brand-cyan-500/15 text-brand-cyan-500 border border-brand-cyan-500/30 mb-5 w-fit">
                   {w.week}
                 </span>
-                <p className="text-white/50 italic text-sm mb-4 leading-relaxed font-light">{w.pain}</p>
-                <p className="text-white/80 leading-relaxed text-[0.95rem] font-light">{w.solution}</p>
+                <p className="text-white italic text-sm mb-4 leading-relaxed font-light">{w.pain}</p>
+                <p className="text-white leading-relaxed text-[0.95rem] font-light">{w.solution}</p>
               </div>
             </AnimatedItem>
           ))}
