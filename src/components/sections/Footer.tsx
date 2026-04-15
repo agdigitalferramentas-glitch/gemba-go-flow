@@ -1,4 +1,5 @@
 import { Mail, MapPin } from "lucide-react";
+import logoGemba from "@/assets/logo-gemba-group.png";
 
 const Footer = () => {
   return (
