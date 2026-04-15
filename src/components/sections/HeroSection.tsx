@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
 import { useState } from "react";
 import heroBg from "@/assets/bg-1-gemba-desktop.webp";
+import heroBgMobile from "@/assets/bg-1-gemba-mobile.webp";
 
 const HeroSection = () => {
   const [nome, setNome] = useState("");
