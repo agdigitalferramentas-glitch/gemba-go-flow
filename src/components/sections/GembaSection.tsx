@@ -24,7 +24,7 @@ const GembaSection = () => {
           </h2>
         </AnimatedSection>
 
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-14 items-start">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-14 items-center">
           <AnimatedSection delay={0.15} className="lg:w-1/2">
             <div className="space-y-6">
               <p className="text-white/70 text-lg leading-relaxed font-light">
