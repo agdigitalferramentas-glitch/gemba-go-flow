@@ -86,10 +86,10 @@ const BentoGrid = () => {
             </ul>
             <Button
               size="lg"
-              className="bg-brand-navy-900 hover:bg-brand-navy-800 text-white font-bold rounded-full px-8 py-6 text-base gap-3 shadow-lg hover:scale-[1.02] transition-all duration-300"
+              className="bg-brand-navy-900 hover:bg-brand-navy-800 text-white font-bold rounded-full px-6 sm:px-8 py-6 text-sm sm:text-base gap-2 sm:gap-3 shadow-lg hover:scale-[1.02] transition-all duration-300 w-full sm:w-auto"
             >
               QUERO COMEÇAR OS 30 DIAS AGORA
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-5 h-5 flex-shrink-0" />
             </Button>
           </div>
         </AnimatedSection>
