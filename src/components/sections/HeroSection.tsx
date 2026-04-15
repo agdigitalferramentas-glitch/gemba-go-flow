@@ -82,17 +82,14 @@ const HeroSection = () => {
                     __html: `
                       <form class="space-y-4">
                         <div class="mb-4">
-                          <label class="mb-1.5 flex items-center gap-1 text-sm font-normal text-white/70" for="persons[name]">Nome</label>
-                          <input type="text" name="persons[name]" id="persons[name]" placeholder="" class="w-full rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[hsl(190,100%,54%)]/50 transition-all" />
+                          <input type="text" name="persons[name]" id="persons[name]" placeholder="Seu nome" class="w-full rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[hsl(190,100%,54%)]/50 transition-all" />
                         </div>
                         <div class="mb-4">
-                          <label class="mb-1.5 flex items-center gap-1 text-sm font-normal text-white/70" for="persons[emails][0][value]">E-mails</label>
-                          <input type="email" name="persons[emails][0][value]" id="persons[emails][0][value]" placeholder="" class="w-full rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[hsl(190,100%,54%)]/50 transition-all" />
+                          <input type="email" name="persons[emails][0][value]" id="persons[emails][0][value]" placeholder="Seu melhor e-mail" class="w-full rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[hsl(190,100%,54%)]/50 transition-all" />
                           <input type="hidden" name="persons[emails][0][label]" value="work" />
                         </div>
                         <div class="mb-4">
-                          <label class="mb-1.5 flex items-center gap-1 text-sm font-normal text-white/70" for="persons[contact_numbers][0][value]">WhatsApp</label>
-                          <input type="text" name="persons[contact_numbers][0][value]" id="persons[contact_numbers][0][value]" placeholder="" class="w-full rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[hsl(190,100%,54%)]/50 transition-all" />
+                          <input type="text" name="persons[contact_numbers][0][value]" id="persons[contact_numbers][0][value]" placeholder="DDD + WhatsApp" class="w-full rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[hsl(190,100%,54%)]/50 transition-all" />
                           <input type="hidden" name="persons[contact_numbers][0][label]" value="work" />
                         </div>
                         <div class="flex justify-center mt-2">
