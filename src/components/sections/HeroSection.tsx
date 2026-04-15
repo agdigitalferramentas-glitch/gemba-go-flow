@@ -45,8 +45,8 @@ const HeroSection = () => {
 
             <AnimatedSection delay={0.1}>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-extrabold text-white leading-[1.1] tracking-tight mb-6">
-                Você entregou o projeto no prazo.{" "}
-                <span className="text-brand-cyan-500">Seu colega foi promovido.</span>
+                Você entregou o&nbsp;projeto no&nbsp;prazo.{" "}
+                <span className="text-brand-cyan-500">Seu colega foi&nbsp;promovido.</span>
               </h1>
             </AnimatedSection>
 
