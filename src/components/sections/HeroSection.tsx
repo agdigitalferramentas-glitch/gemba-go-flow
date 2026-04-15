@@ -10,7 +10,7 @@ const HeroSection = () => {
   const [telefone, setTelefone] = useState("");
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-navy-900">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-navy-900 max-w-full">
       <div
         className="absolute inset-0"
         style={{
@@ -22,10 +22,10 @@ const HeroSection = () => {
       />
       
 
-      <div className="container relative z-10 px-4 py-20">
+      <div className="container relative z-10 px-6 py-20">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left — Copy */}
-          <div>
+          <div className="overflow-hidden">
             <AnimatedSection>
               <span className="inline-block px-4 py-1.5 rounded-full text-sm font-semibold mb-6 bg-brand-cyan-500/15 text-brand-cyan-500 border border-brand-cyan-500/30">
                 Programa de Formação Profissional Lean
@@ -40,16 +40,16 @@ const HeroSection = () => {
             </AnimatedSection>
 
             <AnimatedSection delay={0.15}>
-              <h2 className="text-lg md:text-xl text-white font-semibold mb-4 leading-relaxed">
+              <h2 className="text-base sm:text-lg md:text-xl text-white font-semibold mb-4 leading-relaxed text-balance">
                 Gestores não promovem quem trabalha mais. Eles promovem quem consegue mostrar, com dados, o impacto do próprio trabalho.
               </h2>
             </AnimatedSection>
 
             <AnimatedSection delay={0.2}>
-              <p className="text-base md:text-lg text-white/90 font-light leading-relaxed mb-4">
+              <p className="text-sm sm:text-base md:text-lg text-white/90 font-light leading-relaxed mb-4">
                 Este guia ensina isso, passo a passo, em 30 dias.
               </p>
-              <p className="text-base text-white/80 font-light leading-relaxed">
+              <p className="text-sm sm:text-base text-white/80 font-light leading-relaxed text-balance">
                 Você vai identificar um problema real no seu trabalho, estruturar uma solução com números, executar a melhoria e documentar o resultado de uma forma que nenhum gestor consegue ignorar.
               </p>
             </AnimatedSection>

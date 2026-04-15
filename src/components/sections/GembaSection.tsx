@@ -10,7 +10,7 @@ const GembaSection = () => {
         backgroundImage: "radial-gradient(circle at 80% 80%, hsl(190 100% 54% / 0.12), transparent 50%)"
       }} />
 
-      <div className="container relative z-10 px-4">
+      <div className="container relative z-10 px-6">
         <AnimatedSection>
           <div className="flex items-center gap-3 mb-4">
             <span className="w-9 h-9 rounded-full bg-white text-brand-navy-900 inline-grid place-items-center font-bold text-sm shadow-lg">2</span>
@@ -48,10 +48,10 @@ const GembaSection = () => {
             <div className="mt-10">
               <Button
                 size="lg"
-                className="bg-brand-green hover:bg-brand-green/90 text-brand-navy-900 font-extrabold rounded-full px-8 py-6 text-base gap-3 shadow-lg shadow-brand-green/25 hover:scale-[1.02] transition-all duration-300"
+                className="bg-brand-green hover:bg-brand-green/90 text-brand-navy-900 font-extrabold rounded-full px-6 sm:px-8 py-6 text-sm sm:text-base gap-2 sm:gap-3 shadow-lg shadow-brand-green/25 hover:scale-[1.02] transition-all duration-300 w-full sm:w-auto"
               >
                 QUERO O GUIA GRATUITO AGORA
-                <ArrowRight className="w-5 h-5" />
+                <ArrowRight className="w-5 h-5 flex-shrink-0" />
               </Button>
             </div>
           </AnimatedSection>

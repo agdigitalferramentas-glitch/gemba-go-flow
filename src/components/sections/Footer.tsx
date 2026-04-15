@@ -7,7 +7,7 @@ const Footer = () => {
         background: "radial-gradient(120% 200% at 120% -40%, hsl(190 100% 54% / 0.08), transparent 45%)"
       }} />
 
-      <div className="container relative z-10 px-4 py-12 md:py-16">
+      <div className="container relative z-10 px-6 py-12 md:py-16">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-10">
           <div>
             <img src={logoGemba} alt="Gemba Group" className="h-[60px] w-auto brightness-0 invert" />
