@@ -38,6 +38,12 @@ const Footer = () => {
               Termos de Uso
             </a>
           </div>
+          <p className="text-white/40 text-sm">
+            Desenvolvido por{" "}
+            <a href="https://agwebi.com.br/" target="_blank" rel="noopener noreferrer" className="hover:text-brand-cyan-500 transition-colors underline">
+              AGWEBi
+            </a>
+          </p>
         </div>
       </div>
     </footer>
