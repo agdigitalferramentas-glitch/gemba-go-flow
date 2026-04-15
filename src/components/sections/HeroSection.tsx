@@ -21,7 +21,7 @@ const HeroSection = () => {
         }}
       />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 py-20">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 pt-10 sm:py-20 pb-20">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           {/* Left — Copy */}
           <div className="min-w-0">
