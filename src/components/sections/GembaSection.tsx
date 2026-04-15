@@ -48,11 +48,11 @@ const GembaSection = () => {
             <div className="mt-10">
               <Button
                 size="lg"
-                className="group bg-brand-green hover:brightness-105 text-brand-navy-900 font-extrabold rounded-full px-5 sm:px-6 py-4 sm:py-5 text-sm sm:text-base shadow-[0_8px_20px_-8px_rgba(0,208,84,0.45)] hover:shadow-[0_12px_28px_-8px_rgba(0,208,84,0.55)] transition-all duration-300 w-full sm:w-auto leading-snug focus:outline-none focus:ring-[3px] focus:ring-brand-cyan-500/35"
+                className="group bg-brand-green text-brand-navy-900 font-extrabold rounded-full px-5 sm:px-6 py-4 sm:py-5 text-sm sm:text-base shadow-[0_8px_20px_-8px_rgba(0,208,84,0.45)] hover:shadow-[0_16px_32px_-8px_rgba(0,208,84,0.6)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 ease-out w-full sm:w-auto leading-snug focus:outline-none focus:ring-[3px] focus:ring-brand-cyan-500/35"
               >
                 <span className="flex-1">QUERO O GUIA GRATUITO&nbsp;AGORA</span>
-                <span className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-brand-navy-900 inline-flex items-center justify-center shadow-[0_2px_8px_rgba(0,0,0,0.15)] flex-shrink-0 group-hover:bg-brand-navy-900 group-hover:text-white transition-colors duration-300">
-                  <ArrowRight className="w-5 h-5" />
+                <span className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-brand-navy-900 inline-flex items-center justify-center shadow-[0_2px_8px_rgba(0,0,0,0.15)] flex-shrink-0 group-hover:bg-brand-navy-900 group-hover:text-white group-hover:rotate-[360deg] transition-all duration-500 ease-out">
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform duration-300" />
                 </span>
               </Button>
             </div>
