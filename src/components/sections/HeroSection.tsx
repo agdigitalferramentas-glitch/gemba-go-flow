@@ -25,7 +25,7 @@ const HeroSection = () => {
       <div className="container relative z-10 px-6 py-20">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left — Copy */}
-          <div className="overflow-hidden">
+          <div className="min-w-0">
             <AnimatedSection>
               <span className="inline-block px-4 py-1.5 rounded-full text-sm font-semibold mb-6 bg-brand-cyan-500/15 text-brand-cyan-500 border border-brand-cyan-500/30">
                 Programa de Formação Profissional Lean
