@@ -55,7 +55,9 @@ const BentoGrid = () => {
                 <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-brand-cyan-500/15 text-brand-cyan-500 border border-brand-cyan-500/30 mb-5 w-fit">
                   {w.week}
                 </span>
-                <p className="text-white italic text-sm mb-4 leading-relaxed font-light">{w.pain}</p>
+                <div className="rounded-xl bg-white/10 px-5 py-4 mb-4">
+                  <p className="text-white italic text-sm leading-relaxed font-light">{w.pain}</p>
+                </div>
                 <p className="text-white leading-relaxed text-[0.95rem] font-light">{w.solution}</p>
               </div>
             </AnimatedItem>
