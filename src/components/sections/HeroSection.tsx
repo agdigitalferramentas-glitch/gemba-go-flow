@@ -1,14 +1,18 @@
 import { AnimatedSection } from "@/components/AnimatedSection";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
-import { useState } from "react";
+import { useEffect } from "react";
 import heroBg from "@/assets/bg-1-gemba-desktop.webp";
 import heroBgMobile from "@/assets/bg-1-gemba-mobile.webp";
 
 const HeroSection = () => {
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [telefone, setTelefone] = useState("");
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://gembahub.gembagroup.com.br/web-forms/forms/QBPo0Vv4qiJCzN13OULtFbdhjD31gQJ5sKBEgybXkSscHfrFkP/form.js";
+    script.async = true;
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-navy-900">
@@ -69,54 +73,37 @@ const HeroSection = () => {
           {/* Right — Capture Form */}
           <div className="min-w-0">
             <AnimatedSection delay={0.3}>
-              <div className="rounded-2xl p-6 sm:p-8 md:p-10 border border-white/10 bg-white/5 backdrop-blur-md shadow-2xl">
+              <div className="rounded-2xl p-6 sm:p-8 md:p-10 border border-white/10 bg-white/5 backdrop-blur-md shadow-2xl gemba-form-container">
                 <h3 className="text-xl font-bold text-white mb-6 text-center">
                   Baixe o guia gratuito
                 </h3>
-                <form
-                  className="space-y-4"
-                  onSubmit={(e) => {
-                    e.preventDefault();
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: `
+                      <form class="space-y-4">
+                        <div class="mb-4">
+                          <label class="mb-1.5 flex items-center gap-1 text-sm font-normal text-white/70" for="persons[name]">Nome</label>
+                          <input type="text" name="persons[name]" id="persons[name]" placeholder="" class="w-full rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[hsl(190,100%,54%)]/50 transition-all" />
+                        </div>
+                        <div class="mb-4">
+                          <label class="mb-1.5 flex items-center gap-1 text-sm font-normal text-white/70" for="persons[emails][0][value]">E-mails</label>
+                          <input type="email" name="persons[emails][0][value]" id="persons[emails][0][value]" placeholder="" class="w-full rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[hsl(190,100%,54%)]/50 transition-all" />
+                          <input type="hidden" name="persons[emails][0][label]" value="work" />
+                        </div>
+                        <div class="mb-4">
+                          <label class="mb-1.5 flex items-center gap-1 text-sm font-normal text-white/70" for="persons[contact_numbers][0][value]">WhatsApp</label>
+                          <input type="text" name="persons[contact_numbers][0][value]" id="persons[contact_numbers][0][value]" placeholder="" class="w-full rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[hsl(190,100%,54%)]/50 transition-all" />
+                          <input type="hidden" name="persons[contact_numbers][0][label]" value="work" />
+                        </div>
+                        <div class="flex justify-center mt-2">
+                          <button type="submit" class="w-full bg-[hsl(142,100%,41%)] text-[hsl(213,80%,14%)] font-extrabold rounded-full px-2.5 py-3 text-sm sm:text-base shadow-[0_8px_20px_-8px_rgba(0,208,84,0.45)] hover:bg-white hover:shadow-[0_16px_32px_-8px_rgba(255,255,255,0.3)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 ease-out">
+                            QUERO BAIXAR O GUIA GRATUITO
+                          </button>
+                        </div>
+                      </form>
+                    `,
                   }}
-                >
-                  <div>
-                    <input
-                      type="text"
-                      value={nome}
-                      onChange={(e) => setNome(e.target.value)}
-                      placeholder="Seu nome completo"
-                      className="w-full rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan-500/50 transition-all"
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="seu@email.com"
-                      className="w-full rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan-500/50 transition-all"
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="tel"
-                      value={telefone}
-                      onChange={(e) => setTelefone(e.target.value)}
-                      placeholder="(00) 00000-0000"
-                      className="w-full rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan-500/50 transition-all"
-                    />
-                  </div>
-                  <Button
-                    type="submit"
-                    size="lg"
-                    className="group w-full bg-brand-green text-brand-navy-900 font-extrabold rounded-full px-2.5 py-1.5 sm:px-3 sm:py-2 text-sm sm:text-base shadow-[0_8px_20px_-8px_rgba(0,208,84,0.45)] hover:bg-white hover:shadow-[0_16px_32px_-8px_rgba(255,255,255,0.3)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 ease-out mt-2 leading-snug whitespace-normal focus:outline-none focus:ring-[3px] focus:ring-brand-cyan-500/35 h-auto"
-                  >
-                    <span className="flex-1 text-center">QUERO BAIXAR O&nbsp;GUIA&nbsp;GRATUITO</span>
-                    <span className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white text-brand-navy-900 inline-flex items-center justify-center shadow-[0_2px_8px_rgba(0,0,0,0.15)] flex-shrink-0 group-hover:bg-brand-navy-900 group-hover:text-white group-hover:rotate-[360deg] transition-all duration-500 ease-out">
-                      <ArrowRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform duration-300" />
-                    </span>
-                  </Button>
-                </form>
+                />
               </div>
             </AnimatedSection>
           </div>
