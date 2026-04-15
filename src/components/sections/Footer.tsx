@@ -1,4 +1,3 @@
-import { Mail, MapPin } from "lucide-react";
 import logoGemba from "@/assets/logo-gemba-group.png";
 
 const Footer = () => {
@@ -16,28 +15,12 @@ const Footer = () => {
               Capacitando profissionais para transformar empresas desde 2008.
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-4 text-sm">
-            <a href="#" className="flex items-center gap-2 text-white/60 hover:text-brand-cyan-500 transition-colors">
-              <Mail className="w-4 h-4" /> contato@gembagroup.com.br
-            </a>
-            <span className="flex items-center gap-2 text-white/60">
-              <MapPin className="w-4 h-4" /> Curitiba, PR — Brasil
-            </span>
-          </div>
         </div>
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-white/40 text-sm">
             © {new Date().getFullYear()} Gemba Group. Todos os direitos reservados.
           </p>
-          <div className="flex gap-6">
-            <a href="#" className="text-white/40 hover:text-brand-cyan-500 text-sm transition-colors">
-              Política de Privacidade
-            </a>
-            <a href="#" className="text-white/40 hover:text-brand-cyan-500 text-sm transition-colors">
-              Termos de Uso
-            </a>
-          </div>
           <p className="text-white/40 text-sm">
             Desenvolvido por{" "}
             <a href="https://agwebi.com.br/" target="_blank" rel="noopener noreferrer" className="hover:text-brand-cyan-500 transition-colors underline">
