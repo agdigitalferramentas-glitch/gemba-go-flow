@@ -97,10 +97,12 @@ const HeroSection = () => {
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-full bg-brand-green hover:bg-brand-green/90 text-brand-navy-900 font-extrabold rounded-full px-6 py-5 sm:py-6 text-sm sm:text-base shadow-lg shadow-brand-green/25 hover:scale-[1.02] transition-all duration-300 mt-2 leading-snug"
+                    className="group w-full bg-brand-green hover:brightness-105 text-brand-navy-900 font-extrabold rounded-full px-5 py-4 sm:py-5 text-sm sm:text-base shadow-[0_8px_20px_-8px_rgba(0,208,84,0.45)] hover:shadow-[0_12px_28px_-8px_rgba(0,208,84,0.55)] transition-all duration-300 mt-2 leading-snug focus:outline-none focus:ring-[3px] focus:ring-brand-cyan-500/35"
                   >
-                    QUERO BAIXAR O&nbsp;GUIA&nbsp;GRATUITO
-                    <ArrowDown className="w-5 h-5 ml-2 flex-shrink-0" />
+                    <span className="flex-1">QUERO BAIXAR O&nbsp;GUIA&nbsp;GRATUITO</span>
+                    <span className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-brand-navy-900 inline-flex items-center justify-center shadow-[0_2px_8px_rgba(0,0,0,0.15)] flex-shrink-0 group-hover:bg-brand-navy-900 group-hover:text-white transition-colors duration-300">
+                      <ArrowDown className="w-5 h-5" />
+                    </span>
                   </Button>
                 </form>
               </div>
