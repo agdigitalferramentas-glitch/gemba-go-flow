@@ -109,7 +109,7 @@ const HeroSection = () => {
                   <Button
                     type="submit"
                     size="lg"
-                    className="group w-full bg-brand-green text-brand-navy-900 font-extrabold rounded-full px-2.5 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-base shadow-[0_8px_20px_-8px_rgba(0,208,84,0.45)] hover:bg-white hover:shadow-[0_16px_32px_-8px_rgba(255,255,255,0.3)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 ease-out mt-2 leading-snug focus:outline-none focus:ring-[3px] focus:ring-brand-cyan-500/35 h-auto"
+                    className="group w-full bg-brand-green text-brand-navy-900 font-extrabold rounded-full px-4 py-2.5 sm:px-3 sm:py-2 text-xs sm:text-base shadow-[0_8px_20px_-8px_rgba(0,208,84,0.45)] hover:bg-white hover:shadow-[0_16px_32px_-8px_rgba(255,255,255,0.3)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 ease-out mt-2 leading-snug focus:outline-none focus:ring-[3px] focus:ring-brand-cyan-500/35 h-auto gap-3"
                   >
                     <span className="flex-1 text-left">QUERO BAIXAR O&nbsp;GUIA&nbsp;GRATUITO</span>
                     <span className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white text-brand-navy-900 inline-flex items-center justify-center shadow-[0_2px_8px_rgba(0,0,0,0.15)] flex-shrink-0 group-hover:bg-brand-navy-900 group-hover:text-white group-hover:rotate-[360deg] transition-all duration-500 ease-out">
