@@ -10,7 +10,7 @@ const GembaSection = () => {
         backgroundImage: "radial-gradient(circle at 80% 80%, hsl(190 100% 54% / 0.12), transparent 50%)"
       }} />
 
-      <div className="container relative z-10 px-4">
+      <div className="container relative z-10 px-6">
         <AnimatedSection>
           <div className="flex items-center gap-3 mb-4">
             <span className="w-9 h-9 rounded-full bg-white text-brand-navy-900 inline-grid place-items-center font-bold text-sm shadow-lg">2</span>
