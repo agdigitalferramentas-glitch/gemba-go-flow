@@ -32,7 +32,7 @@ const BentoGrid = () => {
         background: "radial-gradient(110% 170% at 110% -20%, hsl(222 96% 10% / 0.08) 0%, transparent 45%)"
       }} />
 
-      <div className="container relative z-10 px-4">
+      <div className="container relative z-10 px-6">
         <AnimatedSection>
           <div className="flex items-center gap-3 mb-4">
             <span className="w-9 h-9 rounded-full bg-brand-navy-900 text-white inline-grid place-items-center font-bold text-sm shadow-lg">1</span>

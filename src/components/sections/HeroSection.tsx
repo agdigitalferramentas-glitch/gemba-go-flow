@@ -22,7 +22,7 @@ const HeroSection = () => {
       />
       
 
-      <div className="container relative z-10 px-4 py-20">
+      <div className="container relative z-10 px-6 py-20">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left — Copy */}
           <div>
@@ -40,7 +40,7 @@ const HeroSection = () => {
             </AnimatedSection>
 
             <AnimatedSection delay={0.15}>
-              <h2 className="text-lg md:text-xl text-white font-semibold mb-4 leading-relaxed">
+              <h2 className="text-lg md:text-xl text-white font-semibold mb-4 leading-relaxed text-balance">
                 Gestores não promovem quem trabalha mais. Eles promovem quem consegue mostrar, com dados, o impacto do próprio trabalho.
               </h2>
             </AnimatedSection>
