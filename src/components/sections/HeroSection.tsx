@@ -12,10 +12,21 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-navy-900">
+      {/* Desktop bg */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 hidden sm:block"
         style={{
           backgroundImage: `url(${heroBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "top center",
+          backgroundRepeat: "no-repeat",
+        }}
+      />
+      {/* Mobile bg */}
+      <div
+        className="absolute inset-0 block sm:hidden"
+        style={{
+          backgroundImage: `url(${heroBgMobile})`,
           backgroundSize: "cover",
           backgroundPosition: "top center",
           backgroundRepeat: "no-repeat",
