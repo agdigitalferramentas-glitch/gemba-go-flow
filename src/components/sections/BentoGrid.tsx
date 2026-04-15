@@ -86,10 +86,12 @@ const BentoGrid = () => {
             </ul>
             <Button
               size="lg"
-              className="bg-brand-navy-900 hover:bg-brand-navy-800 text-white font-bold rounded-full px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base gap-2 sm:gap-3 shadow-lg hover:scale-[1.02] transition-all duration-300 w-full sm:w-auto leading-snug whitespace-normal text-center"
+              className="group bg-brand-navy-900 hover:brightness-105 text-white font-bold rounded-full px-5 sm:px-6 py-4 sm:py-5 text-sm sm:text-base shadow-[0_8px_20px_-8px_rgba(1,17,51,0.45)] hover:shadow-[0_12px_28px_-8px_rgba(1,17,51,0.55)] transition-all duration-300 w-full sm:w-auto leading-snug whitespace-normal focus:outline-none focus:ring-[3px] focus:ring-brand-cyan-500/35"
             >
-              <span>QUERO COMEÇAR OS&nbsp;30&nbsp;DIAS&nbsp;AGORA</span>
-              <ArrowRight className="w-5 h-5 flex-shrink-0" />
+              <span className="flex-1 text-center">QUERO COMEÇAR OS&nbsp;30&nbsp;DIAS&nbsp;AGORA</span>
+              <span className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-brand-navy-900 inline-flex items-center justify-center shadow-[0_2px_8px_rgba(0,0,0,0.25)] flex-shrink-0 group-hover:bg-brand-cyan-500 group-hover:text-brand-navy-900 transition-colors duration-300">
+                <ArrowRight className="w-5 h-5" />
+              </span>
             </Button>
           </div>
         </AnimatedSection>
