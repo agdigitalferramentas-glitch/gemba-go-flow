@@ -86,10 +86,10 @@ const BentoGrid = () => {
             </ul>
             <Button
               size="lg"
-              className="group bg-brand-navy-900 text-white font-bold rounded-full px-5 sm:px-6 py-4 sm:py-5 text-sm sm:text-base shadow-[0_8px_20px_-8px_rgba(1,17,51,0.45)] hover:shadow-[0_16px_32px_-8px_rgba(1,17,51,0.6)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 ease-out w-full sm:w-auto leading-snug whitespace-normal focus:outline-none focus:ring-[3px] focus:ring-brand-cyan-500/35"
+              className="group w-full bg-brand-navy-900 text-white font-extrabold rounded-full px-2.5 py-1.5 sm:px-3 sm:py-2 text-sm sm:text-base shadow-[0_8px_20px_-8px_rgba(1,17,51,0.45)] hover:bg-brand-navy-900/80 hover:shadow-[0_16px_32px_-8px_rgba(1,17,51,0.5)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 ease-out leading-snug whitespace-normal focus:outline-none focus:ring-[3px] focus:ring-brand-cyan-500/35 h-auto"
             >
               <span className="flex-1 text-center">QUERO COMEÇAR OS&nbsp;30&nbsp;DIAS&nbsp;AGORA</span>
-              <span className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-brand-navy-900 inline-flex items-center justify-center shadow-[0_2px_8px_rgba(0,0,0,0.25)] flex-shrink-0 group-hover:bg-brand-cyan-500 group-hover:text-brand-navy-900 group-hover:rotate-[360deg] transition-all duration-500 ease-out">
+              <span className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white text-brand-navy-900 inline-flex items-center justify-center shadow-[0_2px_8px_rgba(0,0,0,0.15)] flex-shrink-0 group-hover:bg-brand-cyan-500 group-hover:text-brand-navy-900 group-hover:rotate-[360deg] transition-all duration-500 ease-out">
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform duration-300" />
               </span>
             </Button>
