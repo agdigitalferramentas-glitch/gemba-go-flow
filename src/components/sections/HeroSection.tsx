@@ -97,9 +97,9 @@ const HeroSection = () => {
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-full bg-brand-green hover:bg-brand-green/90 text-brand-navy-900 font-extrabold rounded-full py-6 text-sm sm:text-base shadow-lg shadow-brand-green/25 hover:scale-[1.02] transition-all duration-300 mt-2"
+                    className="w-full bg-brand-green hover:bg-brand-green/90 text-brand-navy-900 font-extrabold rounded-full px-6 py-5 sm:py-6 text-sm sm:text-base shadow-lg shadow-brand-green/25 hover:scale-[1.02] transition-all duration-300 mt-2 leading-snug"
                   >
-                    QUERO BAIXAR O GUIA GRATUITO
+                    QUERO BAIXAR O&nbsp;GUIA&nbsp;GRATUITO
                     <ArrowDown className="w-5 h-5 ml-2 flex-shrink-0" />
                   </Button>
                 </form>
