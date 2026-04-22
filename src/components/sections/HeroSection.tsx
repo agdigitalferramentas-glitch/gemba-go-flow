@@ -4,15 +4,36 @@ import { useNavigate } from "react-router-dom";
 import heroBg from "@/assets/bg-1-gemba-desktop.webp";
 import heroBgMobile from "@/assets/bg-1-gemba-mobile.webp";
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const phoneRegex = /^\d{10,11}$/;
+
 const HeroSection = () => {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<{ name?: string; email?: string; phone?: string }>({});
+
+  const validate = (name: string, email: string, phone: string) => {
+    const errs: typeof errors = {};
+    if (!name.trim()) errs.name = "Nome é obrigatório";
+    if (!email.trim()) errs.email = "E-mail é obrigatório";
+    else if (!emailRegex.test(email.trim())) errs.email = "E-mail inválido";
+    if (!phone.trim()) errs.phone = "WhatsApp é obrigatório";
+    else if (!phoneRegex.test(phone.replace(/\D/g, ""))) errs.phone = "Informe DDD + número (10 ou 11 dígitos)";
+    return errs;
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
     const formData = new FormData(e.currentTarget);
+    const name = (formData.get("persons[name]") as string) || "";
+    const email = (formData.get("persons[emails][0][value]") as string) || "";
+    const phone = (formData.get("persons[contact_numbers][0][value]") as string) || "";
+
+    const errs = validate(name, email, phone);
+    setErrors(errs);
+    if (Object.keys(errs).length > 0) return;
+
+    setIsSubmitting(true);
 
     try {
       const response = await fetch("https://gembahub.gembagroup.com.br/web-forms/forms/3", {
@@ -23,13 +44,9 @@ const HeroSection = () => {
       if (response.ok || response.status === 302) {
         navigate("/pfpl-obrigado");
       } else {
-        const data = await response.json().catch(() => null);
-        console.error("Form submission error:", data);
         alert("Erro ao enviar. Tente novamente.");
       }
-    } catch (error) {
-      console.error("Network error:", error);
-      // Even on CORS error, the data may have been received — redirect
+    } catch {
       navigate("/pfpl-obrigado");
     } finally {
       setIsSubmitting(false);
