@@ -1,5 +1,5 @@
 import { AnimatedSection } from "@/components/AnimatedSection";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import heroBg from "@/assets/bg-1-gemba-desktop.webp";
 import heroBgMobile from "@/assets/bg-1-gemba-mobile.webp";
@@ -7,10 +7,36 @@ import heroBgMobile from "@/assets/bg-1-gemba-mobile.webp";
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phoneRegex = /^\d{10,11}$/;
 
+const FORM_ACTION = "https://gembahub.gembagroup.com.br/web-forms/forms/3";
+
 const HeroSection = () => {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<{ name?: string; email?: string; phone?: string }>({});
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  // Listen for iframe load after submission to detect completion
+  useEffect(() => {
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+
+    let submitted = false;
+
+    const handleLoad = () => {
+      if (submitted) {
+        setIsSubmitting(false);
+        navigate("/pfpl-obrigado");
+      }
+    };
+
+    iframe.addEventListener("load", handleLoad);
+
+    // Expose setter for the submit handler
+    (iframe as any).__markSubmitted = () => { submitted = true; };
+
+    return () => iframe.removeEventListener("load", handleLoad);
+  }, [navigate]);
 
   const validate = (name: string, email: string, phone: string) => {
     const errs: typeof errors = {};
@@ -22,35 +48,23 @@ const HeroSection = () => {
     return errs;
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const name = (formData.get("persons[name]") as string) || "";
-    const email = (formData.get("persons[emails][0][value]") as string) || "";
-    const phone = (formData.get("persons[contact_numbers][0][value]") as string) || "";
+    const form = formRef.current!;
+    const fd = new FormData(form);
+    const name = (fd.get("persons[name]") as string) || "";
+    const email = (fd.get("persons[emails][0][value]") as string) || "";
+    const phone = (fd.get("persons[contact_numbers][0][value]") as string) || "";
 
     const errs = validate(name, email, phone);
     setErrors(errs);
     if (Object.keys(errs).length > 0) return;
 
     setIsSubmitting(true);
-
-    try {
-      const response = await fetch("https://gembahub.gembagroup.com.br/web-forms/forms/3", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (response.ok || response.status === 302) {
-        navigate("/pfpl-obrigado");
-      } else {
-        alert("Erro ao enviar. Tente novamente.");
-      }
-    } catch {
-      navigate("/pfpl-obrigado");
-    } finally {
-      setIsSubmitting(false);
-    }
+    // Mark iframe as awaiting a submission response
+    (iframeRef.current as any)?.__markSubmitted?.();
+    // Submit natively into the hidden iframe (bypasses CORS)
+    form.submit();
   };
 
   return (
