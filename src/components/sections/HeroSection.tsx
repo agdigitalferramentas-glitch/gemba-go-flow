@@ -118,15 +118,18 @@ const HeroSection = () => {
                 </h3>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="mb-4">
-                    <input type="text" name="persons[name]" required placeholder="Seu nome" className="w-full rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan-500/50 transition-all" />
+                    <input type="text" name="persons[name]" placeholder="Seu nome" className={`w-full rounded-xl bg-white/10 border ${errors.name ? 'border-red-400' : 'border-white/15'} text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan-500/50 transition-all`} />
+                    {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name}</p>}
                   </div>
                   <div className="mb-4">
-                    <input type="email" name="persons[emails][0][value]" required placeholder="Seu melhor e-mail" className="w-full rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan-500/50 transition-all" />
+                    <input type="email" name="persons[emails][0][value]" placeholder="Seu melhor e-mail" className={`w-full rounded-xl bg-white/10 border ${errors.email ? 'border-red-400' : 'border-white/15'} text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan-500/50 transition-all`} />
                     <input type="hidden" name="persons[emails][0][label]" value="work" />
+                    {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
                   </div>
                   <div className="mb-4">
-                    <input type="text" name="persons[contact_numbers][0][value]" placeholder="DDD + WhatsApp" className="w-full rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan-500/50 transition-all" />
+                    <input type="text" name="persons[contact_numbers][0][value]" placeholder="DDD + WhatsApp" className={`w-full rounded-xl bg-white/10 border ${errors.phone ? 'border-red-400' : 'border-white/15'} text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan-500/50 transition-all`} />
                     <input type="hidden" name="persons[contact_numbers][0][label]" value="work" />
+                    {errors.phone && <p className="text-red-400 text-xs mt-1">{errors.phone}</p>}
                   </div>
                   <div className="flex justify-center mt-2">
                     <button type="submit" disabled={isSubmitting} className="group w-full bg-[hsl(142,100%,41%)] text-[hsl(213,80%,14%)] font-extrabold rounded-full px-2.5 py-1.5 text-sm shadow-[0_8px_20px_-8px_rgba(0,208,84,0.45)] hover:bg-white hover:shadow-[0_16px_32px_-8px_rgba(255,255,255,0.3)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 ease-out whitespace-normal text-center inline-flex items-center justify-center gap-2 disabled:opacity-70">
