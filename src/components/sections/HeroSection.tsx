@@ -5,12 +5,16 @@ import heroBgMobile from "@/assets/bg-1-gemba-mobile.webp";
 
 const HeroSection = () => {
   useEffect(() => {
+    const container = document.getElementById("krayin-webform-container");
+    if (!container) return;
     const script = document.createElement("script");
     script.src = "https://gembahub.gembagroup.com.br/web-forms/forms/QBPo0Vv4qiJCzN13OULtFbdhjD31gQJ5sKBEgybXkSscHfrFkP/form.js";
     script.async = true;
-    document.body.appendChild(script);
+    container.appendChild(script);
     return () => {
-      document.body.removeChild(script);
+      if (container.contains(script)) {
+        container.removeChild(script);
+      }
     };
   }, []);
 
