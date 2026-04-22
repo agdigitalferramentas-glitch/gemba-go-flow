@@ -100,9 +100,6 @@
     text-wrap: balance;
   }
 }
-
-/* Krayin WebForm styling to match dark theme */
-#krayin-webform-container form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
