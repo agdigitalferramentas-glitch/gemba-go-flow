@@ -130,7 +130,15 @@ const HeroSection = () => {
                 <h3 className="text-xl font-bold text-white mb-6 text-center">
                   Baixe o guia gratuito
                 </h3>
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form
+                  ref={formRef}
+                  onSubmit={handleSubmit}
+                  action={FORM_ACTION}
+                  method="POST"
+                  target="krayin-iframe"
+                  encType="multipart/form-data"
+                  className="space-y-4"
+                >
                   <div className="mb-4">
                     <input type="text" name="persons[name]" placeholder="Seu nome" className={`w-full rounded-xl bg-white/10 border ${errors.name ? 'border-red-400' : 'border-white/15'} text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan-500/50 transition-all`} />
                     {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name}</p>}
@@ -156,6 +164,8 @@ const HeroSection = () => {
                     </button>
                   </div>
                 </form>
+                {/* Hidden iframe to receive form submission (avoids CORS) */}
+                <iframe ref={iframeRef} name="krayin-iframe" className="hidden" aria-hidden="true" tabIndex={-1} />
               </div>
             </AnimatedSection>
           </div>
