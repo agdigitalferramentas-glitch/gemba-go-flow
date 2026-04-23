@@ -1,11 +1,53 @@
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle, BookOpen, Target, RefreshCw, Bookmark } from "lucide-react";
+import { ArrowRight, CheckCircle, BookOpen, Target, RefreshCw, Bookmark, AlertTriangle } from "lucide-react";
 import Footer from "@/components/sections/Footer";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
 const DOWNLOAD_URL = "https://drive.google.com/file/d/1_Vhm22Qzz9_n5k4ryUFxrpHhGT9cnZdD/view?usp=sharing";
 
 const ThankYou = () => {
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const hasError = searchParams.get("status") === "erro";
+
+  if (hasError) {
+    return (
+      <div className="min-h-screen overflow-x-hidden bg-brand-navy-900 flex items-center justify-center">
+        <div className="w-full max-w-lg mx-auto px-5 py-20 text-center">
+          <AnimatedSection>
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold mb-8 bg-red-500/15 text-red-400 border border-red-500/30">
+              <AlertTriangle className="w-4 h-4" />
+              Falha no envio
+            </span>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.1}>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white leading-[1.1] tracking-tight mb-6">
+              Ops, algo deu errado.
+            </h1>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.15}>
+            <p className="text-base sm:text-lg text-white/80 font-light leading-relaxed mb-10">
+              Não conseguimos enviar seus dados. Verifique sua conexão e tente novamente.
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.2}>
+            <Button
+              size="lg"
+              onClick={() => navigate("/")}
+              className="group bg-brand-green text-brand-navy-900 font-extrabold rounded-full px-6 py-2 text-base shadow-[0_8px_20px_-8px_rgba(0,208,84,0.45)] hover:bg-white hover:shadow-[0_16px_32px_-8px_rgba(255,255,255,0.3)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 ease-out h-auto"
+            >
+              TENTAR NOVAMENTE
+            </Button>
+          </AnimatedSection>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen overflow-x-hidden bg-brand-navy-900">
       {/* Hero */}
