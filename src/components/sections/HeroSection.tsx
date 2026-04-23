@@ -7,7 +7,7 @@ import heroBgMobile from "@/assets/bg-1-gemba-mobile.webp";
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phoneRegex = /^\d{10,11}$/;
 
-const FORM_ACTION = "https://gembahub.gembagroup.com.br/web-forms/forms/3";
+const FORM_ACTION = "https://gembahub.gembagroup.com.br/web-forms/forms/QBPo0Vv4qiJCzN13OULtFbdhjD31gQJ5sKBEgybXkSscHfrFkP";
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -206,9 +206,7 @@ const HeroSection = () => {
                 >
                   <input ref={hiddenNameRef} type="hidden" name="persons[name]" />
                   <input ref={hiddenEmailRef} type="hidden" name="persons[emails][0][value]" />
-                  <input type="hidden" name="persons[emails][0][label]" value="work" />
                   <input ref={hiddenPhoneRef} type="hidden" name="persons[contact_numbers][0][value]" />
-                  <input type="hidden" name="persons[contact_numbers][0][label]" value="work" />
                   <input type="hidden" name="leads[lead_source_id]" value="32" />
                   <input type="hidden" name="leads[user_id]" value="16" />
                 </form>
