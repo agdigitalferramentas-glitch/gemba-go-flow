@@ -1,5 +1,5 @@
 import { AnimatedSection } from "@/components/AnimatedSection";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import heroBg from "@/assets/bg-1-gemba-desktop.webp";
 import heroBgMobile from "@/assets/bg-1-gemba-mobile.webp";
@@ -13,6 +13,30 @@ const HeroSection = () => {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<{ name?: string; email?: string; phone?: string }>({});
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const hiddenFormRef = useRef<HTMLFormElement>(null);
+  const submitLockRef = useRef(false);
+  const pendingSubmissionRef = useRef(false);
+  const hiddenNameRef = useRef<HTMLInputElement>(null);
+  const hiddenEmailRef = useRef<HTMLInputElement>(null);
+  const hiddenPhoneRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+
+    const handleLoad = () => {
+      if (!pendingSubmissionRef.current) return;
+
+      pendingSubmissionRef.current = false;
+      submitLockRef.current = false;
+      setIsSubmitting(false);
+      navigate("/pfpl-obrigado");
+    };
+
+    iframe.addEventListener("load", handleLoad);
+    return () => iframe.removeEventListener("load", handleLoad);
+  }, [navigate]);
 
   const validate = (name: string, email: string, phone: string) => {
     const errs: typeof errors = {};
@@ -24,34 +48,30 @@ const HeroSection = () => {
     return errs;
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.currentTarget;
-    const fd = new FormData(form);
-    const name = (fd.get("persons[name]") as string) || "";
-    const email = (fd.get("persons[emails][0][value]") as string) || "";
-    const phone = (fd.get("persons[contact_numbers][0][value]") as string) || "";
+    if (submitLockRef.current || isSubmitting) return;
+
+    const fd = new FormData(e.currentTarget);
+    const name = ((fd.get("persons[name]") as string) || "").trim();
+    const email = ((fd.get("persons[emails][0][value]") as string) || "").trim();
+    const phone = (((fd.get("persons[contact_numbers][0][value]") as string) || "").trim()).replace(/\D/g, "");
 
     const errs = validate(name, email, phone);
     setErrors(errs);
     if (Object.keys(errs).length > 0) return;
 
+    if (!hiddenFormRef.current || !hiddenNameRef.current || !hiddenEmailRef.current || !hiddenPhoneRef.current) return;
+
+    hiddenNameRef.current.value = name;
+    hiddenEmailRef.current.value = email;
+    hiddenPhoneRef.current.value = phone;
+
+    submitLockRef.current = true;
+    pendingSubmissionRef.current = true;
     setIsSubmitting(true);
 
-    try {
-      // Send as multipart/form-data using no-cors to bypass CORS restrictions
-      // The CRM endpoint accepts this format (confirmed via direct POST)
-      await fetch(FORM_ACTION, {
-        method: "POST",
-        body: fd,
-        mode: "no-cors",
-      });
-    } catch {
-      // Even if fetch throws (unlikely with no-cors), we still redirect
-    }
-
-    setIsSubmitting(false);
-    navigate("/pfpl-obrigado");
+    hiddenFormRef.current.submit();
   };
 
   return (
@@ -117,27 +137,19 @@ const HeroSection = () => {
                 <h3 className="text-xl font-bold text-white mb-6 text-center">
                   Baixe o guia gratuito
                 </h3>
-                <form
-                  onSubmit={handleSubmit}
-                  className="space-y-4"
-                >
+                <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="mb-4">
                     <input type="text" name="persons[name]" placeholder="Seu nome" className={`w-full rounded-xl bg-white/10 border ${errors.name ? 'border-red-400' : 'border-white/15'} text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan-500/50 transition-all`} />
                     {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name}</p>}
                   </div>
                   <div className="mb-4">
                     <input type="email" name="persons[emails][0][value]" placeholder="Seu melhor e-mail" className={`w-full rounded-xl bg-white/10 border ${errors.email ? 'border-red-400' : 'border-white/15'} text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan-500/50 transition-all`} />
-                    <input type="hidden" name="persons[emails][0][label]" value="work" />
                     {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
                   </div>
                   <div className="mb-4">
                     <input type="text" name="persons[contact_numbers][0][value]" placeholder="DDD + WhatsApp" className={`w-full rounded-xl bg-white/10 border ${errors.phone ? 'border-red-400' : 'border-white/15'} text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan-500/50 transition-all`} />
-                    <input type="hidden" name="persons[contact_numbers][0][label]" value="work" />
                     {errors.phone && <p className="text-red-400 text-xs mt-1">{errors.phone}</p>}
                   </div>
-                  {/* Hidden CRM fields: Origem = Ag WEBI LP-PFPL, Responsável = Ag Webi */}
-                  <input type="hidden" name="leads[lead_source_id]" value="32" />
-                  <input type="hidden" name="leads[user_id]" value="16" />
                   <div className="flex justify-center mt-2">
                     <button type="submit" disabled={isSubmitting} className="group w-full bg-[hsl(142,100%,41%)] text-[hsl(213,80%,14%)] font-extrabold rounded-full px-2.5 py-1.5 text-sm shadow-[0_8px_20px_-8px_rgba(0,208,84,0.45)] hover:bg-white hover:shadow-[0_16px_32px_-8px_rgba(255,255,255,0.3)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 ease-out whitespace-normal text-center inline-flex items-center justify-center gap-2 disabled:opacity-70">
                       <span className="flex-1 text-center">
@@ -149,6 +161,26 @@ const HeroSection = () => {
                     </button>
                   </div>
                 </form>
+
+                <form
+                  ref={hiddenFormRef}
+                  action={FORM_ACTION}
+                  method="POST"
+                  target="krayin-iframe"
+                  encType="multipart/form-data"
+                  className="hidden"
+                  aria-hidden="true"
+                >
+                  <input ref={hiddenNameRef} type="hidden" name="persons[name]" />
+                  <input ref={hiddenEmailRef} type="hidden" name="persons[emails][0][value]" />
+                  <input type="hidden" name="persons[emails][0][label]" value="work" />
+                  <input ref={hiddenPhoneRef} type="hidden" name="persons[contact_numbers][0][value]" />
+                  <input type="hidden" name="persons[contact_numbers][0][label]" value="work" />
+                  <input type="hidden" name="leads[lead_source_id]" value="32" />
+                  <input type="hidden" name="leads[user_id]" value="16" />
+                </form>
+
+                <iframe ref={iframeRef} name="krayin-iframe" className="hidden" aria-hidden="true" tabIndex={-1} />
               </div>
             </AnimatedSection>
           </div>
