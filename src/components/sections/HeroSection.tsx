@@ -31,6 +31,8 @@ const HeroSection = () => {
       pendingSubmissionRef.current = false;
       submitLockRef.current = false;
       setIsSubmitting(false);
+
+      // Iframe loaded a response from CRM — treat as success
       navigate("/pfpl-obrigado");
     };
 
@@ -63,13 +65,38 @@ const HeroSection = () => {
 
     if (!hiddenFormRef.current || !hiddenNameRef.current || !hiddenEmailRef.current || !hiddenPhoneRef.current) return;
 
+    // Fill hidden fields
     hiddenNameRef.current.value = name;
     hiddenEmailRef.current.value = email;
     hiddenPhoneRef.current.value = phone;
 
+    // Double-check all hidden inputs are populated before submitting
+    const formData = new FormData(hiddenFormRef.current);
+    const hiddenName = (formData.get("persons[name]") as string) || "";
+    const hiddenEmail = (formData.get("persons[emails][0][value]") as string) || "";
+    const hiddenPhone = (formData.get("persons[contact_numbers][0][value]") as string) || "";
+    const hiddenSource = (formData.get("leads[lead_source_id]") as string) || "";
+    const hiddenUser = (formData.get("leads[user_id]") as string) || "";
+
+    if (!hiddenName || !hiddenEmail || !hiddenPhone || !hiddenSource || !hiddenUser) {
+      setErrors({ name: "Erro interno. Recarregue a página e tente novamente." });
+      return;
+    }
+
     submitLockRef.current = true;
     pendingSubmissionRef.current = true;
     setIsSubmitting(true);
+
+    // Timeout: if iframe doesn't load within 15s, treat as failure
+    const timeout = setTimeout(() => {
+      if (!pendingSubmissionRef.current) return;
+      pendingSubmissionRef.current = false;
+      submitLockRef.current = false;
+      setIsSubmitting(false);
+      navigate("/pfpl-obrigado?status=erro");
+    }, 15000);
+
+    timeoutRef.current = timeout;
 
     hiddenFormRef.current.submit();
   };
