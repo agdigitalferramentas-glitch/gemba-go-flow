@@ -32,6 +32,12 @@ const HeroSection = () => {
       submitLockRef.current = false;
       setIsSubmitting(false);
 
+      // Clear timeout since iframe loaded successfully
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
+
       // Iframe loaded a response from CRM — treat as success
       navigate("/pfpl-obrigado");
     };
