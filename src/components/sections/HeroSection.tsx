@@ -20,7 +20,7 @@ const HeroSection = () => {
   const hiddenNameRef = useRef<HTMLInputElement>(null);
   const hiddenEmailRef = useRef<HTMLInputElement>(null);
   const hiddenPhoneRef = useRef<HTMLInputElement>(null);
-
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => {
     const iframe = iframeRef.current;
     if (!iframe) return;
