@@ -7,7 +7,7 @@ import heroBgMobile from "@/assets/bg-1-gemba-mobile.webp";
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const phoneRegex = /^\d{10,11}$/;
 
-const FORM_ACTION = "https://gembahub.gembagroup.com.br/web-forms/forms/QBPo0Vv4qiJCzN13OULtFbdhjD31gQJ5sKBEgybXkSscHfrFkP";
+const FORM_ACTION = "https://gembahub.gembagroup.com.br/web-forms/forms/3";
 
 const HeroSection = () => {
   const navigate = useNavigate();
