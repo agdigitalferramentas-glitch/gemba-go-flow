@@ -113,12 +113,17 @@ const HeroSectionTesteAg = () => {
                   Baixe o guia gratuito
                 </h3>
                 <iframe
+                  ref={iframeRef}
+                  id={AGSELL_FRAME_ID}
                   src={AGSELL_FORM_URL}
                   title="Formulário de captura"
                   loading="eager"
                   referrerPolicy="no-referrer-when-downgrade"
-                  className="w-full block border-0 bg-transparent"
-                  style={{ height: 400, colorScheme: "normal" }}
+                  allowTransparency
+                  width="100%"
+                  height={600}
+                  className="w-full block mx-auto"
+                  style={{ border: "none", borderRadius: 8, maxWidth: 600, background: "transparent" }}
                 />
               </div>
             </AnimatedSection>
