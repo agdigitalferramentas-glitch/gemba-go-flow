@@ -41,19 +41,17 @@ const HeroSectionTesteAg = () => {
 
     setIsSubmitting(true);
     try {
-      const res = await fetch(AGSELL_SUBMIT_URL, {
+      // Dispara a requisição mas não bloqueia o redirect:
+      // o endpoint do agsell grava o lead mesmo quando responde 500.
+      fetch(AGSELL_SUBMIT_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, phone: phoneRaw }),
+        keepalive: true,
+      }).catch(() => {
+        /* lead já foi enviado; ignoramos erros de rede para não travar o redirect */
       });
-
-      if (!res.ok) {
-        navigate("/pfpl-obrigado?status=erro");
-        return;
-      }
       navigate("/pfpl-obrigado");
-    } catch {
-      navigate("/pfpl-obrigado?status=erro");
     } finally {
       setIsSubmitting(false);
     }
