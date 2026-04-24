@@ -91,12 +91,12 @@ const HeroSectionTesteAg = () => {
                   Baixe o guia gratuito
                 </h3>
                 <iframe
-                  src="https://site.agsell.com.br/forms/40b46db9-0981-4268-9ed0-57cded476c2c"
-                  width="100%"
-                  height="400"
-                  frameBorder="0"
-                  className="w-full rounded-xl bg-transparent"
+                  src={AGSELL_FORM_URL}
                   title="Formulário de captura"
+                  loading="eager"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full block border-0 bg-transparent"
+                  style={{ height: 400, colorScheme: "normal" }}
                 />
               </div>
             </AnimatedSection>
