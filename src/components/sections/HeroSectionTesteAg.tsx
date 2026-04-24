@@ -1,12 +1,16 @@
 import { AnimatedSection } from "@/components/AnimatedSection";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import heroBg from "@/assets/bg-1-gemba-desktop.webp";
 import heroBgMobile from "@/assets/bg-1-gemba-mobile.webp";
 
 const AGSELL_ORIGIN = "https://site.agsell.com.br";
-const AGSELL_FORM_URL = `${AGSELL_ORIGIN}/forms/40b46db9-0981-4268-9ed0-57cded476c2c`;
+const AGSELL_FORM_ID = "40b46db9-0981-4268-9ed0-57cded476c2c";
+const AGSELL_FORM_URL = `${AGSELL_ORIGIN}/forms/${AGSELL_FORM_ID}`;
+const AGSELL_FRAME_ID = `agsell-form-frame-${AGSELL_FORM_ID}`;
 
 const HeroSectionTesteAg = () => {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
   // Pré-conecta ao domínio do form para acelerar o carregamento do iframe
   useEffect(() => {
     const links: HTMLLinkElement[] = [];
@@ -25,6 +29,24 @@ const HeroSectionTesteAg = () => {
     return () => {
       links.forEach((l) => l.parentNode?.removeChild(l));
     };
+  }, []);
+
+  // Auto-resize do iframe via postMessage do agsell
+  useEffect(() => {
+    const handler = (e: MessageEvent) => {
+      const data = e.data as { type?: string; formId?: string; height?: number } | null;
+      if (
+        data &&
+        data.type === "agsell-form-height" &&
+        data.formId === AGSELL_FORM_ID &&
+        typeof data.height === "number" &&
+        iframeRef.current
+      ) {
+        iframeRef.current.style.height = `${data.height}px`;
+      }
+    };
+    window.addEventListener("message", handler);
+    return () => window.removeEventListener("message", handler);
   }, []);
 
   return (
@@ -91,12 +113,17 @@ const HeroSectionTesteAg = () => {
                   Baixe o guia gratuito
                 </h3>
                 <iframe
+                  ref={iframeRef}
+                  id={AGSELL_FRAME_ID}
                   src={AGSELL_FORM_URL}
                   title="Formulário de captura"
                   loading="eager"
                   referrerPolicy="no-referrer-when-downgrade"
-                  className="w-full block border-0 bg-transparent"
-                  style={{ height: 400, colorScheme: "normal" }}
+                  allowTransparency
+                  width="100%"
+                  height={600}
+                  className="w-full block mx-auto"
+                  style={{ border: "none", borderRadius: 8, maxWidth: 600, background: "transparent" }}
                 />
               </div>
             </AnimatedSection>
