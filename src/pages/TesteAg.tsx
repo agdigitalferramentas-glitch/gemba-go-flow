@@ -1,4 +1,4 @@
-import HeroSection from "@/components/sections/HeroSection";
+import HeroSection from "@/components/sections/HeroSectionTesteAg";
 import BentoGrid from "@/components/sections/BentoGrid";
 import GembaSection from "@/components/sections/GembaSection";
 import Footer from "@/components/sections/Footer";
