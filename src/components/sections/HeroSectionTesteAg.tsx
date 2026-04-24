@@ -122,8 +122,8 @@ const HeroSectionTesteAg = () => {
                   allowTransparency
                   width="100%"
                   height={600}
-                  className="w-full block mx-auto"
-                  style={{ border: "none", borderRadius: 8, maxWidth: 600, background: "transparent" }}
+                  className="w-full block border-0 bg-transparent"
+                  style={{ colorScheme: "normal" }}
                 />
               </div>
             </AnimatedSection>
