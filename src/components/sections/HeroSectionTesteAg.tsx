@@ -1,8 +1,32 @@
 import { AnimatedSection } from "@/components/AnimatedSection";
+import { useEffect } from "react";
 import heroBg from "@/assets/bg-1-gemba-desktop.webp";
 import heroBgMobile from "@/assets/bg-1-gemba-mobile.webp";
 
+const AGSELL_ORIGIN = "https://site.agsell.com.br";
+const AGSELL_FORM_URL = `${AGSELL_ORIGIN}/forms/40b46db9-0981-4268-9ed0-57cded476c2c`;
+
 const HeroSectionTesteAg = () => {
+  // Pré-conecta ao domínio do form para acelerar o carregamento do iframe
+  useEffect(() => {
+    const links: HTMLLinkElement[] = [];
+    const rels: Array<{ rel: string; crossOrigin?: string }> = [
+      { rel: "preconnect", crossOrigin: "anonymous" },
+      { rel: "dns-prefetch" },
+    ];
+    rels.forEach(({ rel, crossOrigin }) => {
+      const link = document.createElement("link");
+      link.rel = rel;
+      link.href = AGSELL_ORIGIN;
+      if (crossOrigin) link.crossOrigin = crossOrigin;
+      document.head.appendChild(link);
+      links.push(link);
+    });
+    return () => {
+      links.forEach((l) => l.parentNode?.removeChild(l));
+    };
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-navy-900">
       {/* Desktop bg */}
@@ -67,12 +91,12 @@ const HeroSectionTesteAg = () => {
                   Baixe o guia gratuito
                 </h3>
                 <iframe
-                  src="https://site.agsell.com.br/forms/40b46db9-0981-4268-9ed0-57cded476c2c"
-                  width="100%"
-                  height="400"
-                  frameBorder="0"
-                  className="w-full rounded-xl bg-transparent"
+                  src={AGSELL_FORM_URL}
                   title="Formulário de captura"
+                  loading="eager"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full block border-0 bg-transparent"
+                  style={{ height: 400, colorScheme: "normal" }}
                 />
               </div>
             </AnimatedSection>
