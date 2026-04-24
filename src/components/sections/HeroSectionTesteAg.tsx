@@ -9,6 +9,8 @@ const AGSELL_FORM_URL = `${AGSELL_ORIGIN}/forms/${AGSELL_FORM_ID}`;
 const AGSELL_FRAME_ID = `agsell-form-frame-${AGSELL_FORM_ID}`;
 
 const HeroSectionTesteAg = () => {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
   // Pré-conecta ao domínio do form para acelerar o carregamento do iframe
   useEffect(() => {
     const links: HTMLLinkElement[] = [];
@@ -27,6 +29,24 @@ const HeroSectionTesteAg = () => {
     return () => {
       links.forEach((l) => l.parentNode?.removeChild(l));
     };
+  }, []);
+
+  // Auto-resize do iframe via postMessage do agsell
+  useEffect(() => {
+    const handler = (e: MessageEvent) => {
+      const data = e.data as { type?: string; formId?: string; height?: number } | null;
+      if (
+        data &&
+        data.type === "agsell-form-height" &&
+        data.formId === AGSELL_FORM_ID &&
+        typeof data.height === "number" &&
+        iframeRef.current
+      ) {
+        iframeRef.current.style.height = `${data.height}px`;
+      }
+    };
+    window.addEventListener("message", handler);
+    return () => window.removeEventListener("message", handler);
   }, []);
 
   return (
