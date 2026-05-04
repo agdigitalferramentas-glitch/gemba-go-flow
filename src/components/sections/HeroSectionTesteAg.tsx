@@ -1,19 +1,10 @@
 import { AnimatedSection } from "@/components/AnimatedSection";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import heroBg from "@/assets/bg-1-gemba-desktop.webp";
 import heroBgMobile from "@/assets/bg-1-gemba-mobile.webp";
 
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const phoneRegex = /^\d{10,11}$/;
-
-const AGSELL_SUBMIT_URL =
-  "https://gmemxbfibakfpsjbsvyt.supabase.co/functions/v1/public-api/forms/40b46db9-0981-4268-9ed0-57cded476c2c/submit";
+const AGSELL_FORM_URL = "https://site.agsell.com.br/forms/d6cc9b67-fc6c-4bd9-854d-e24e5697b49c";
 
 const HeroSectionTesteAg = () => {
-  const navigate = useNavigate();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [errors, setErrors] = useState<{ name?: string; email?: string; phone?: string; form?: string }>({});
 
   const validate = (name: string, email: string, phone: string) => {
     const errs: typeof errors = {};
