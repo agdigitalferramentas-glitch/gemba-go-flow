@@ -1,62 +1,10 @@
 import { AnimatedSection } from "@/components/AnimatedSection";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import heroBg from "@/assets/bg-1-gemba-desktop.webp";
 import heroBgMobile from "@/assets/bg-1-gemba-mobile.webp";
 
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const phoneRegex = /^\d{10,11}$/;
-
-const AGSELL_SUBMIT_URL =
-  "https://gmemxbfibakfpsjbsvyt.supabase.co/functions/v1/public-api/forms/40b46db9-0981-4268-9ed0-57cded476c2c/submit";
+const AGSELL_FORM_URL = "https://site.agsell.com.br/forms/d6cc9b67-fc6c-4bd9-854d-e24e5697b49c";
 
 const HeroSectionTesteAg = () => {
-  const navigate = useNavigate();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [errors, setErrors] = useState<{ name?: string; email?: string; phone?: string; form?: string }>({});
-
-  const validate = (name: string, email: string, phone: string) => {
-    const errs: typeof errors = {};
-    if (!name.trim()) errs.name = "Nome é obrigatório";
-    if (!email.trim()) errs.email = "E-mail é obrigatório";
-    else if (!emailRegex.test(email.trim())) errs.email = "E-mail inválido";
-    if (!phone.trim()) errs.phone = "WhatsApp é obrigatório";
-    else if (!phoneRegex.test(phone.replace(/\D/g, ""))) errs.phone = "Informe DDD + número (10 ou 11 dígitos)";
-    return errs;
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (isSubmitting) return;
-
-    const fd = new FormData(e.currentTarget);
-    const name = ((fd.get("name") as string) || "").trim();
-    const email = ((fd.get("email") as string) || "").trim();
-    const phoneRaw = ((fd.get("phone") as string) || "").trim();
-    const phone = phoneRaw.replace(/\D/g, "");
-
-    const errs = validate(name, email, phone);
-    setErrors(errs);
-    if (Object.keys(errs).length > 0) return;
-
-    setIsSubmitting(true);
-    try {
-      // Dispara a requisição mas não bloqueia o redirect:
-      // o endpoint do agsell grava o lead mesmo quando responde 500.
-      fetch(AGSELL_SUBMIT_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, phone: phoneRaw }),
-        keepalive: true,
-      }).catch(() => {
-        /* lead já foi enviado; ignoramos erros de rede para não travar o redirect */
-      });
-      navigate("/pfpl-obrigado");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-navy-900">
       {/* Desktop bg */}
@@ -113,38 +61,21 @@ const HeroSectionTesteAg = () => {
             </AnimatedSection>
           </div>
 
-          {/* Right — Capture Form (agsell API) */}
+          {/* Right — Capture Form (agsell embed) */}
           <div className="min-w-0">
             <AnimatedSection delay={0.3}>
               <div className="rounded-2xl p-6 sm:p-8 md:p-10 border border-white/10 bg-white/5 backdrop-blur-md shadow-2xl gemba-form-container">
                 <h3 className="text-xl font-bold text-white mb-6 text-center">
                   Baixe o guia gratuito
                 </h3>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="mb-4">
-                    <input type="text" name="name" placeholder="Seu nome" className={`w-full rounded-xl bg-white/10 border ${errors.name ? 'border-red-400' : 'border-white/15'} text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan-500/50 transition-all`} />
-                    {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name}</p>}
-                  </div>
-                  <div className="mb-4">
-                    <input type="email" name="email" placeholder="Seu melhor e-mail" className={`w-full rounded-xl bg-white/10 border ${errors.email ? 'border-red-400' : 'border-white/15'} text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan-500/50 transition-all`} />
-                    {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
-                  </div>
-                  <div className="mb-4">
-                    <input type="text" name="phone" placeholder="DDD + WhatsApp" className={`w-full rounded-xl bg-white/10 border ${errors.phone ? 'border-red-400' : 'border-white/15'} text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan-500/50 transition-all`} />
-                    {errors.phone && <p className="text-red-400 text-xs mt-1">{errors.phone}</p>}
-                  </div>
-                  {errors.form && <p className="text-red-400 text-xs">{errors.form}</p>}
-                  <div className="flex justify-center mt-2">
-                    <button type="submit" disabled={isSubmitting} className="group w-full bg-[hsl(142,100%,41%)] text-[hsl(213,80%,14%)] font-extrabold rounded-full px-2.5 py-1.5 text-sm shadow-[0_8px_20px_-8px_rgba(0,208,84,0.45)] hover:bg-white hover:shadow-[0_16px_32px_-8px_rgba(255,255,255,0.3)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 ease-out whitespace-normal text-center inline-flex items-center justify-center gap-2 disabled:opacity-70">
-                      <span className="flex-1 text-center">
-                        {isSubmitting ? "ENVIANDO..." : <>QUERO BAIXAR O{"\u00A0"}GUIA{"\u00A0"}GRATUITO</>}
-                      </span>
-                      <span className="w-11 h-11 rounded-full bg-white text-[hsl(213,80%,14%)] inline-flex items-center justify-center shadow-[0_2px_8px_rgba(0,0,0,0.15)] flex-shrink-0 group-hover:rotate-[360deg] group-hover:bg-[hsl(213,80%,14%)] group-hover:text-white transition-all duration-500 ease-out">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:translate-x-0.5 transition-transform duration-300"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                      </span>
-                    </button>
-                  </div>
-                </form>
+                <iframe
+                  src={AGSELL_FORM_URL}
+                  width="100%"
+                  height={400}
+                  frameBorder={0}
+                  className="w-full rounded-xl bg-transparent"
+                  title="Formulário de captação"
+                />
               </div>
             </AnimatedSection>
           </div>
