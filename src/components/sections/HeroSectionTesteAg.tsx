@@ -5,49 +5,6 @@ import heroBgMobile from "@/assets/bg-1-gemba-mobile.webp";
 const AGSELL_FORM_URL = "https://site.agsell.com.br/forms/d6cc9b67-fc6c-4bd9-854d-e24e5697b49c";
 
 const HeroSectionTesteAg = () => {
-
-  const validate = (name: string, email: string, phone: string) => {
-    const errs: typeof errors = {};
-    if (!name.trim()) errs.name = "Nome é obrigatório";
-    if (!email.trim()) errs.email = "E-mail é obrigatório";
-    else if (!emailRegex.test(email.trim())) errs.email = "E-mail inválido";
-    if (!phone.trim()) errs.phone = "WhatsApp é obrigatório";
-    else if (!phoneRegex.test(phone.replace(/\D/g, ""))) errs.phone = "Informe DDD + número (10 ou 11 dígitos)";
-    return errs;
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (isSubmitting) return;
-
-    const fd = new FormData(e.currentTarget);
-    const name = ((fd.get("name") as string) || "").trim();
-    const email = ((fd.get("email") as string) || "").trim();
-    const phoneRaw = ((fd.get("phone") as string) || "").trim();
-    const phone = phoneRaw.replace(/\D/g, "");
-
-    const errs = validate(name, email, phone);
-    setErrors(errs);
-    if (Object.keys(errs).length > 0) return;
-
-    setIsSubmitting(true);
-    try {
-      // Dispara a requisição mas não bloqueia o redirect:
-      // o endpoint do agsell grava o lead mesmo quando responde 500.
-      fetch(AGSELL_SUBMIT_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, phone: phoneRaw }),
-        keepalive: true,
-      }).catch(() => {
-        /* lead já foi enviado; ignoramos erros de rede para não travar o redirect */
-      });
-      navigate("/pfpl-obrigado");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-navy-900">
       {/* Desktop bg */}
