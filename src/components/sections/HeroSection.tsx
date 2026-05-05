@@ -21,6 +21,12 @@ const HeroSection = () => {
     setIsSubmitting(true);
 
     try {
+      // Normaliza o telefone para apenas dígitos (Agsell não aceita "+" nem máscara)
+      const payload = {
+        ...formData,
+        phone: formData.phone.replace(/\D/g, ""),
+      };
+
       // Envia para o Agsell via API (POST)
       // Usamos keepalive para garantir que a requisição termine mesmo com o redirecionamento
       fetch(AGSELL_SUBMIT_URL, {
@@ -28,7 +34,7 @@ const HeroSection = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
         keepalive: true
       });
 
