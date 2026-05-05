@@ -1,10 +1,24 @@
 import { AnimatedSection } from "@/components/AnimatedSection";
+import { useEffect, useRef } from "react";
 import heroBg from "@/assets/bg-1-gemba-desktop.webp";
 import heroBgMobile from "@/assets/bg-1-gemba-mobile.webp";
 
-const AGSELL_FORM_URL = "https://site.agsell.com.br/forms/d6cc9b67-fc6c-4bd9-854d-e24e5697b49c";
+const AGSELL_FORM_ID = "d6cc9b67-fc6c-4bd9-854d-e24e5697b49c";
+const AGSELL_FORM_URL = `https://site.agsell.com.br/forms/${AGSELL_FORM_ID}`;
 
 const HeroSectionTesteAg = () => {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  useEffect(() => {
+    const handleMessage = (e: MessageEvent) => {
+      if (e.data && e.data.type === "agsell-form-height" && e.data.formId === AGSELL_FORM_ID && iframeRef.current) {
+        iframeRef.current.style.height = `${e.data.height}px`;
+      }
+    };
+    window.addEventListener("message", handleMessage);
+    return () => window.removeEventListener("message", handleMessage);
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-navy-900">
       {/* Desktop bg */}
@@ -69,12 +83,12 @@ const HeroSectionTesteAg = () => {
                   Baixe o guia gratuito
                 </h3>
                 <iframe
+                  ref={iframeRef}
                   src={AGSELL_FORM_URL}
-                  width="100%"
-                  height={400}
-                  frameBorder={0}
-                  className="w-full rounded-xl bg-transparent"
-                  title="Formulário de captação"
+                  title="Baixe o guia gratuito"
+                  allowTransparency
+                  className="w-full rounded-lg bg-transparent border-0 transition-[height] duration-300 mx-auto"
+                  style={{ minHeight: 400, maxWidth: 600 }}
                 />
               </div>
             </AnimatedSection>
