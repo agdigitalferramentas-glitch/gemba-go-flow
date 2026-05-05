@@ -1,8 +1,10 @@
 import { AnimatedSection } from "@/components/AnimatedSection";
+import { useEffect, useRef } from "react";
 import heroBg from "@/assets/bg-1-gemba-desktop.webp";
 import heroBgMobile from "@/assets/bg-1-gemba-mobile.webp";
 
-const AGSELL_FORM_URL = "https://site.agsell.com.br/forms/d6cc9b67-fc6c-4bd9-854d-e24e5697b49c";
+const AGSELL_FORM_ID = "d6cc9b67-fc6c-4bd9-854d-e24e5697b49c";
+const AGSELL_FORM_URL = `https://site.agsell.com.br/forms/${AGSELL_FORM_ID}`;
 
 const HeroSectionTesteAg = () => {
   return (
