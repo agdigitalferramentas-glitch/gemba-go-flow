@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import heroBg from "@/assets/bg-1-gemba-desktop.webp";
 import heroBgMobile from "@/assets/bg-1-gemba-mobile.webp";
+import logoPfpl from "@/assets/logo-pfpl.svg";
 
 // Usando o ID do formulário mais recente fornecido pelo usuário
 const AGSELL_SUBMIT_URL = "https://gmemxbfibakfpsjbsvyt.supabase.co/functions/v1/public-api/forms/d6cc9b67-fc6c-4bd9-854d-e24e5697b49c/submit";
@@ -80,9 +81,7 @@ const HeroSection = () => {
           {/* Left — Copy */}
           <div className="min-w-0">
             <AnimatedSection>
-              <span className="inline-block px-4 py-1.5 rounded-full text-sm font-semibold mb-6 bg-brand-cyan-500/15 text-brand-cyan-500 border border-brand-cyan-500/30">
-                Programa de Formação Profissional Lean
-              </span>
+              <img src={logoPfpl} alt="PFPL - Programa de Formação Profissional Lean" className="h-20 sm:h-24 w-auto mb-6" />
             </AnimatedSection>
 
             <AnimatedSection delay={0.1}>
