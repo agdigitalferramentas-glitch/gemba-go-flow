@@ -81,7 +81,7 @@ const HeroSection = () => {
           {/* Left — Copy */}
           <div className="min-w-0">
             <AnimatedSection>
-              <img src={logoPfpl} alt="PFPL - Programa de Formação Profissional Lean" className="h-15 sm:h-18 w-auto mb-6" style={{ height: "auto", maxHeight: "4.5rem" }} />
+              <img src={logoPfpl} alt="PFPL - Programa de Formação Profissional Lean" className="w-auto mb-6 h-[2.7rem] sm:h-auto" style={{ maxHeight: "4.5rem" }} />
             </AnimatedSection>
 
             <AnimatedSection delay={0.1}>
