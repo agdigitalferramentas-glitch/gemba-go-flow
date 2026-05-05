@@ -19,6 +19,18 @@ const GembaSection = () => {
               Quem é a Gemba Group
             </span>
           </div>
+        </AnimatedSection>
+
+        {/* Mobile-only: foto antes do título */}
+        <AnimatedSection className="lg:hidden mb-6">
+          <img
+            src={gembaTeamImg}
+            alt="Equipe Gemba Group"
+            className="w-full aspect-square object-cover rounded-2xl shadow-2xl"
+          />
+        </AnimatedSection>
+
+        <AnimatedSection>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-8 tracking-tight">
             O método por trás deste guia
           </h2>
