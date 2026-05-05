@@ -7,6 +7,18 @@ const AGSELL_FORM_ID = "d6cc9b67-fc6c-4bd9-854d-e24e5697b49c";
 const AGSELL_FORM_URL = `https://site.agsell.com.br/forms/${AGSELL_FORM_ID}`;
 
 const HeroSectionTesteAg = () => {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  useEffect(() => {
+    const handleMessage = (e: MessageEvent) => {
+      if (e.data && e.data.type === "agsell-form-height" && e.data.formId === AGSELL_FORM_ID && iframeRef.current) {
+        iframeRef.current.style.height = `${e.data.height}px`;
+      }
+    };
+    window.addEventListener("message", handleMessage);
+    return () => window.removeEventListener("message", handleMessage);
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-navy-900">
       {/* Desktop bg */}
