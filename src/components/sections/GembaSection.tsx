@@ -70,7 +70,7 @@ const GembaSection = () => {
             </div>
           </AnimatedSection>
 
-          <AnimatedSection delay={0.3} className="lg:w-1/2">
+          <AnimatedSection delay={0.3} className="lg:w-1/2 hidden lg:block">
             <img
               src={gembaTeamImg}
               alt="Equipe Gemba Group"
