@@ -1,23 +1,50 @@
 import { AnimatedSection } from "@/components/AnimatedSection";
-import { useEffect, useRef } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import heroBg from "@/assets/bg-1-gemba-desktop.webp";
 import heroBgMobile from "@/assets/bg-1-gemba-mobile.webp";
 
-const AGSELL_FORM_ID = "d6cc9b67-fc6c-4bd9-854d-e24e5697b49c";
-const AGSELL_FORM_URL = `https://site.agsell.com.br/forms/${AGSELL_FORM_ID}`;
+// Usando o ID do formulário mais recente fornecido pelo usuário
+const AGSELL_SUBMIT_URL = "https://gmemxbfibakfpsjbsvyt.supabase.co/functions/v1/public-api/forms/d6cc9b67-fc6c-4bd9-854d-e24e5697b49c/submit";
 
 const HeroSection = () => {
-  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: ""
+  });
 
-  useEffect(() => {
-    const handleMessage = (e: MessageEvent) => {
-      if (e.data && e.data.type === "agsell-form-height" && e.data.formId === AGSELL_FORM_ID && iframeRef.current) {
-        iframeRef.current.style.height = `${e.data.height}px`;
-      }
-    };
-    window.addEventListener("message", handleMessage);
-    return () => window.removeEventListener("message", handleMessage);
-  }, []);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      // Envia para o Agsell via API (POST)
+      // Usamos keepalive para garantir que a requisição termine mesmo com o redirecionamento
+      fetch(AGSELL_SUBMIT_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+        keepalive: true
+      });
+
+      // Redireciona imediatamente para a página de obrigado, como solicitado anteriormente
+      navigate("/pfpl-obrigado");
+    } catch (error) {
+      console.error("Erro ao enviar formulário:", error);
+      // Mesmo com erro, redirecionamos para garantir a experiência do usuário
+      navigate("/pfpl-obrigado");
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-navy-900">
@@ -75,21 +102,60 @@ const HeroSection = () => {
             </AnimatedSection>
           </div>
 
-          {/* Right — Capture Form (agsell embed) */}
+          {/* Right — Capture Form (Nativo para controle total de estilo) */}
           <div className="min-w-0">
             <AnimatedSection delay={0.3}>
-              <div className="rounded-2xl p-6 sm:p-8 md:p-10 border border-white/10 bg-white/5 backdrop-blur-md shadow-2xl gemba-form-container">
-                <h3 className="text-xl font-bold text-white mb-6 text-center">
-                  Baixe o guia gratuito
-                </h3>
-                <iframe
-                  ref={iframeRef}
-                  src={AGSELL_FORM_URL}
-                  title="Baixe o guia gratuito"
-                  allowTransparency
-                  className="w-full rounded-lg bg-transparent border-0 transition-[height] duration-300 mx-auto"
-                  style={{ minHeight: 400, maxWidth: 600 }}
-                />
+              <div className="gemba-form-container">
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Seu nome"
+                      required
+                      value={formData.name}
+                      onChange={handleChange}
+                      className="w-full rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan-500/50 transition-all"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Seu melhor e-mail"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="w-full rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan-500/50 transition-all"
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      name="phone"
+                      placeholder="DDD + WhatsApp"
+                      required
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="w-full rounded-xl bg-white/10 border border-white/15 text-white placeholder:text-white/30 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-cyan-500/50 transition-all"
+                    />
+                  </div>
+                  
+                  <div className="flex justify-center pt-2">
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="group w-full bg-[hsl(142,100%,41%)] text-[hsl(213,80%,14%)] font-extrabold rounded-full px-2.5 py-1.5 text-sm shadow-[0_8px_20px_-8px_rgba(0,208,84,0.45)] hover:bg-white hover:shadow-[0_16px_32px_-8px_rgba(255,255,255,0.3)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 ease-out whitespace-normal text-center inline-flex items-center justify-center gap-2 disabled:opacity-70"
+                    >
+                      <span className="flex-1 text-center">
+                        {isSubmitting ? "ENVIANDO..." : <>QUERO BAIXAR O{"\u00A0"}GUIA{"\u00A0"}GRATUITO</>}
+                      </span>
+                      <span className="w-11 h-11 rounded-full bg-white text-[hsl(213,80%,14%)] inline-flex items-center justify-center shadow-[0_2px_8px_rgba(0,0,0,0.15)] flex-shrink-0 group-hover:rotate-[360deg] group-hover:bg-[hsl(213,80%,14%)] group-hover:text-white transition-all duration-500 ease-out">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:translate-x-0.5 transition-transform duration-300"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                      </span>
+                    </button>
+                  </div>
+                </form>
               </div>
             </AnimatedSection>
           </div>
