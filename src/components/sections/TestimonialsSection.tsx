@@ -35,8 +35,8 @@ const TestimonialCard = ({ videoId }: { videoId: string }) => {
           <img src={thumb} alt="Depoimento" className="h-full w-full object-cover" loading="lazy" />
           <span className="absolute inset-0 bg-brand-navy-900/20 transition group-hover:bg-brand-navy-900/10" />
           <span className="absolute inset-0 grid place-items-center">
-            <span className="grid h-16 w-16 place-items-center rounded-full bg-brand-green text-brand-navy-900 shadow-[0_8px_24px_-6px_rgba(0,208,84,0.6)] transition-transform duration-300 group-hover:scale-110">
-              <Play className="h-7 w-7 fill-brand-navy-900" />
+            <span className="grid h-16 w-16 place-items-center rounded-full bg-white text-brand-cyan-500 shadow-[0_8px_24px_-6px_rgba(255,255,255,0.4)] transition-transform duration-300 group-hover:scale-110">
+              <Play className="h-7 w-7 fill-brand-cyan-500" />
             </span>
           </span>
         </button>
