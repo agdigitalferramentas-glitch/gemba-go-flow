@@ -1,5 +1,6 @@
 import HeroSection from "@/components/sections/HeroSection";
 import BentoGrid from "@/components/sections/BentoGrid";
+import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import GembaSection from "@/components/sections/GembaSection";
 import Footer from "@/components/sections/Footer";
 
@@ -8,6 +9,7 @@ const Index = () => {
     <div className="min-h-screen overflow-x-hidden">
       <HeroSection />
       <BentoGrid />
+      <TestimonialsSection />
       <GembaSection />
       <Footer />
     </div>
