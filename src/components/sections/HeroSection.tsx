@@ -110,7 +110,7 @@ const HeroSection = () => {
           {/* Right — Capture Form (Nativo para controle total de estilo) */}
           <div className="min-w-0">
             <AnimatedSection delay={0.3}>
-              <div className="gemba-form-container">
+              <div className="gemba-form-container" id="formulario">
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <input
