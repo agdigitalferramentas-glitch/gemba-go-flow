@@ -6,7 +6,7 @@ import heroBgMobile from "@/assets/bg-1-gemba-mobile.webp";
 import logoPfpl from "@/assets/logo-pfpl.svg";
 
 // Usando o ID do formulário mais recente fornecido pelo usuário
-const AGSELL_SUBMIT_URL = "https://gmemxbfibakfpsjbsvyt.supabase.co/functions/v1/public-api/forms/d6cc9b67-fc6c-4bd9-854d-e24e5697b49c/submit";
+const AGSELL_SUBMIT_URL = "https://rcxrkvwxlzwzrllwdwgz.supabase.co/functions/v1/public-api/forms/d6cc9b67-fc6c-4bd9-854d-e24e5697b49c/submit";
 
 const HeroSection = () => {
   const navigate = useNavigate();
