@@ -27,7 +27,7 @@ const HeroSection = () => {
       const telefone = digits.startsWith("55") ? digits : `55${digits}`;
 
       const payload = {
-        programa_elite: "Black Belt",
+        programa_elite: "PFPL",
         nome: formData.name,
         telefone,
         email: formData.email,
