@@ -6,7 +6,7 @@ import heroBgMobile from "@/assets/bg-1-gemba-mobile.webp";
 import logoPfpl from "@/assets/logo-pfpl.svg";
 
 // Usando o ID do formulário mais recente fornecido pelo usuário
-const AGSELL_SUBMIT_URL = "https://rcxrkvwxlzwzrllwdwgz.supabase.co/functions/v1/public-api/forms/d6cc9b67-fc6c-4bd9-854d-e24e5697b49c/submit";
+const WEBHOOK_URL = "https://automacao.gembagroup.com.br/webhook/29448797-7eed-40a1-923a-70785ac16ab9";
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -22,21 +22,22 @@ const HeroSection = () => {
     setIsSubmitting(true);
 
     try {
-      // Normaliza o telefone para apenas dígitos (Agsell não aceita "+" nem máscara)
+      // Normaliza o telefone: apenas dígitos, com DDI 55 quando ausente
+      const digits = formData.phone.replace(/\D/g, "");
+      const telefone = digits.startsWith("55") ? digits : `55${digits}`;
+
       const payload = {
-        ...formData,
-        phone: formData.phone.replace(/\D/g, ""),
+        programa_elite: "Black Belt",
+        nome: formData.name,
+        telefone,
+        email: formData.email,
       };
 
-      // Envia para o Agsell via API (POST)
-      // Usamos keepalive para garantir que a requisição termine mesmo com o redirecionamento
-      fetch(AGSELL_SUBMIT_URL, {
+      fetch(WEBHOOK_URL, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
-        keepalive: true
+        keepalive: true,
       });
 
       // Redireciona imediatamente para a página de obrigado, como solicitado anteriormente
