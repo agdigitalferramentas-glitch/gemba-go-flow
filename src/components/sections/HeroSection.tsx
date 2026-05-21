@@ -33,18 +33,24 @@ const HeroSection = () => {
         email: formData.email,
       };
 
-      fetch(WEBHOOK_URL, {
+      const response = await fetch(WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
         keepalive: true,
       });
 
-      // Redireciona imediatamente para a página de obrigado, como solicitado anteriormente
-      navigate("/pfpl-obrigado");
+      if (response.ok) {
+        console.log("Formulário enviado com sucesso!");
+      } else {
+        console.warn("Webhook retornou status:", response.status);
+      }
     } catch (error) {
       console.error("Erro ao enviar formulário:", error);
-      // Mesmo com erro, redirecionamos para garantir a experiência do usuário
+      alert("Ocorreu um erro ao enviar. Por favor, tente novamente.");
+    } finally {
+      setIsSubmitting(false);
+      // Redireciona para a página de obrigado independentemente do resultado
       navigate("/pfpl-obrigado");
     }
   };
